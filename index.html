@@ -517,7 +517,9 @@ section.details{margin-top:5px!important}
 #players.seats-4 .seat-1,#players.seats-4 .seat-3{top:calc(50% - 65px)!important}
 #gameScreen .table-area{margin-top:-5px!important}
 @media(max-width:380px){#players.seats-4{height:clamp(194px,52vw,205px)!important}}
-</style><style id="online-style">#onlineScreen .online-fields{display:grid;gap:12px;margin:15px auto;max-width:330px}#onlineScreen label{display:grid;gap:5px;text-align:left;color:#f5e1ac;font-weight:700}#onlineScreen input{width:100%;padding:13px;border-radius:10px;border:1px solid #d6b967;background:#fffdf6;color:#17382c;font-size:17px}#onlineMessage{min-height:2em;color:#ffe18d;white-space:pre-wrap}#onlineLobby{margin:16px auto;padding:14px;border:1px solid #d7b66b;border-radius:15px;background:#08382d}#onlineMembers{margin:12px 0;text-align:left;line-height:2}#onlineRoomCode{letter-spacing:3px;color:#ffe18d}#onlineScreen .entry-primary{margin:5px}</style><style>
+#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
+</style><style id="online-style">#onlineScreen .online-fields{display:grid;gap:12px;margin:15px auto;max-width:330px}#onlineScreen label{display:grid;gap:5px;text-align:left;color:#f5e1ac;font-weight:700}#onlineScreen input{width:100%;padding:13px;border-radius:10px;border:1px solid #d6b967;background:#fffdf6;color:#17382c;font-size:17px}#onlineMessage{min-height:2em;color:#ffe18d;white-space:pre-wrap}#onlineLobby{margin:16px auto;padding:14px;border:1px solid #d7b66b;border-radius:15px;background:#08382d}#onlineMembers{margin:12px 0;text-align:left;line-height:2}#onlineRoomCode{letter-spacing:3px;color:#ffe18d}#onlineScreen .entry-primary{margin:5px}#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
+</style><style>
 #onlineGame{margin:20px 0;padding:16px 12px;border:1px solid #dfbd71;border-radius:18px;background:#093d31;color:#ffedc1;text-align:center}
 #onlineGame .og-cards{display:flex;justify-content:center;flex-wrap:wrap;gap:5px;margin:12px 0}
 #onlineGame button.og-card{width:48px;height:76px;padding:4px 1px;border-radius:8px;background:#fff9ec;color:#132e28;font-size:19px;font-weight:800;border:2px solid #c8ad74}
@@ -528,8 +530,9 @@ section.details{margin-top:5px!important}
 #onlineGame .og-actions button:disabled{opacity:.4}
 #onlineGame .og-back{display:inline-block;width:30px;height:45px;background:repeating-linear-gradient(40deg,#183d83,#183d83 4px,#6e97d8 5px,#6e97d8 7px);border:2px solid white;border-radius:5px;margin-left:-10px}
 #onlineGame .og-msg{min-height:28px;margin:10px 0}
+#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
 </style></head><body>
-<header class="brand"><h1>がばちょ <small>v0.42</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
+<header class="brand"><h1>がばちょ <small>v0.44</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
 <div id="onlineScreen" class="entry-screen" hidden><div class="entry-overline">ONLINE LOBBY · BETA</div><h2 class="entry-heading">🌐 オンライン対戦ロビー</h2><p class="entry-lead">部屋コードを共有して友達と集合</p><div class="online-fields"><label>ニックネーム<input id="onlineName" maxlength="20" placeholder="名前を入力" autocomplete="nickname"></label><label>部屋コード<input id="onlineCode" maxlength="8" placeholder="例：AB12CD" autocapitalize="characters"></label></div><button class="entry-primary" onclick="createOnlineRoom()">部屋を作る</button><button class="entry-primary" onclick="joinOnlineRoom()">コードで参加</button><p id="onlineMessage" role="status"></p><div id="onlineLobby" hidden><h3>部屋コード：<span id="onlineRoomCode"></span></h3><button onclick="copyOnlineCode()">コードをコピー</button><div id="onlineMembers"></div><button id="onlineStart" onclick="startOnlineMatch()" hidden>2人でゲーム開始</button><p class="muted">2人対戦β版。ホストが接続中の間、ゲームが同期されます。通信が切れたら新しい部屋でやり直してください。</p><div id="onlineGame" hidden></div><button class="entry-back" onclick="leaveOnlineRoom()">部屋から退出</button></div><button class="entry-back" onclick="leaveOnlineRoom();showHome()">← ホームへ戻る</button></div>
 <div id="rulesScreen" class="entry-screen rules-screen" hidden><div class="entry-overline">HOW TO PLAY</div><h2 class="entry-heading">📖 がばちょのルール</h2><div class="rules-body"><h3>🎯 勝利条件</h3><p>相手が場に出したカードの数字の合計と、自分の手札の数字の合計が一致したら「ドン！」。ドンが成立するとそのゲームは終了し、得点を精算します。設定したゲーム数が終わった時点の総合得点が最も高い人が優勝！</p><h3>🃏 基本の出し方</h3><p>最初の手札は5枚。場と同じマークか同じ数字のカードを出せます。同じ数字はまとめて複数枚出せます。Jとジョーカーはいつでも出せて、次のマークを指定できます。Aは1、ジョーカーは0として計算します。</p><h3>⚡ 特殊カード</h3><p><b>A：</b>次の人を1人飛ばします。複数枚ならその枚数分飛ばします。<br><b>2・8：</b>次の人に2枚引くペナルティ。同じ数字を重ねて返せます。<br><b>ジョーカー：</b>4枚引くペナルティ。ジョーカー同士で重ねられます。</p><h3>🔁 ターンとドロー</h3><p>出せるカードがなければ1枚引きます。1ターンに任意で引けるのは1枚まで。2・8などのペナルティを引いた後も、出せるカードがなければさらに1枚引く必要があります。</p><h3>💰 ドンと得点</h3><p>通常ドンは、ドンした人以外の手札枚数合計×100点が基本。ドンした人の手札のジョーカー1枚ごとに獲得点数が2倍になります。ドンされた人も手札合計が一致すれば「ドン返し」が可能です。</p><p>1枚引いて成立する「引きドン」は基本点が2倍、「引きドン返し」は4倍。自分の出した場札に引きドンする「オナニー引きドン」は2倍で、ほかの全員が均等に支払います。山札の再シャッフルで巡目が進むと得点倍率も上がります。</p><h3>🏆 最終優勝</h3><p>各ゲームの得点を累積し、全ゲーム終了後に総合1位を発表。同点1位は同時優勝です。</p></div><button class="entry-primary" onclick="showHome()">ホームへ戻る</button></div>
@@ -633,6 +636,14 @@ function settle(){
  const title=reverse?(isDraw?'引きドン返し':'ドン返し'):(selfDraw?'オナニー引きドン':isDraw?'引きドン':'通常ドン');
  const roundMultiplier=2**(g.round-1);
  const typeMultiplier=selfDraw?2:isDraw?(reverse?4:2):1;
+ const breakdown=(baseCards,base,jokerPower,actual,payers)=>{
+  let parts=[baseCards+'枚 × 100＝'+cash(base)];
+  if(typeMultiplier>1)parts.push(title+' ×'+typeMultiplier);
+  if(jokerPower>0)parts.push('ジョーカー'+jokerPower+'枚 ×'+(2**jokerPower));
+  if(roundMultiplier>1)parts.push(g.round+'巡目 ×'+roundMultiplier);
+  if(payers)parts.push(payers+'人で均等割り（端数切り上げ）＝各'+cash(Math.ceil(actual/payers)));
+  return parts.join(' × ');
+ };
  const payments=[];let changes=[];
  for(const c of callers){
   const winner=reverse?owner:c,loser=reverse?c:owner;
@@ -647,11 +658,11 @@ function settle(){
    for(const i of payers){g.scores[i]-=each;g.scores[winner]+=each}
    const actual=each*payers.length;
    changes.push(who(winner)+'が各'+cash(each)+'を'+payers.length+'人から獲得');
-   payments.push({line:who(winner)+' ← その他'+payers.length+'人：各'+cash(each),detail:'基礎 '+baseCards+'枚×100＝'+cash(base)+' × ドン種別'+typeMultiplier+' × ジョーカー'+jokerMultiplier+' × 巡目'+roundMultiplier+' ÷ '+payers.length+'人（切り上げ）＝ 合計'+cash(actual)});
+   payments.push({line:who(winner)+' ← その他'+payers.length+'人：各'+cash(each),detail:breakdown(baseCards,base,jokerPower,amount,payers.length)});
   }else if(winner>=0&&loser>=0){
    g.scores[loser]-=amount;g.scores[winner]+=amount;
    changes.push(who(loser)+' → '+who(winner)+'：'+cash(amount));
-   payments.push({line:who(loser)+' → '+who(winner)+'：'+cash(amount),detail:'基礎 '+baseCards+'枚×100＝'+cash(base)+' × ドン種別'+typeMultiplier+' × ジョーカー'+jokerMultiplier+' × 巡目'+roundMultiplier});
+   payments.push({line:who(loser)+' → '+who(winner)+'：'+cash(amount),detail:breakdown(baseCards,base,jokerPower,amount,0)});
   }
  }
  const callerNames=callers.map(who).join('・');
@@ -678,11 +689,19 @@ function bestSuit(p){let counts=suits.map(s=>g.hands[p].filter(c=>c.s===s).lengt
 function cpuPick(p){
  const options=g.hands[p].filter(c=>legal([c]));
  const ordinary=options.filter(c=>c.n!=='joker');
- if(ordinary.length){
-   // Prefer reducing hand size without losing the joker multiplier.
-   return ordinary[Math.floor(Math.random()*ordinary.length)];
+ if(!ordinary.length)return null;
+ // Compare legal single-card plays with same-rank groups. Prefer groups when
+ // they reduce hand size, but retain some variation in CPU behavior.
+ const groups=[];
+ for(const card of ordinary){
+  const cards=g.hands[p].filter(c=>c.n===card.n);
+  if(cards.length>1&&legal(cards)&&!groups.some(x=>x[0].n===card.n))groups.push(cards);
  }
- return null;
+ if(groups.length&&Math.random()<.85){
+  groups.sort((a,b)=>b.length-a.length);
+  return groups[0];
+ }
+ return [ordinary[Math.floor(Math.random()*ordinary.length)]];
 }
 function resolvePenalty(p){
  if(!g.penalty)return false;
@@ -706,12 +725,12 @@ function cpu(){
  let p=g.turn;
  if(g.penalty){if(resolvePenalty(p))return}
  let c=cpuPick(p);
- if(c){finish(p,[c],c.n===11?bestSuit(p):null);return}
+ if(c){finish(p,c,c[0].n===11?bestSuit(p):null);return}
  if(!g.drawn&&take(p)){
    g.drawn=true;
    if(total(g.hands[p])===g.board.target){startDecision('draw',g.board.owner,p);return}
    c=cpuPick(p);
-   if(c){finish(p,[c],c.n===11?bestSuit(p):null);return}
+   if(c){finish(p,c,c[0].n===11?bestSuit(p):null);return}
  }
  // Only consider a joker when there is no ordinary card, the CPU has
  // already drawn, and holding it is less useful.
@@ -734,7 +753,7 @@ function championHome(){closeChampion();showHome()}
 function showChampion(){if(!g||g.gameNo!==g.games||g.phase!=='over')return;const sorted=g.scores.map((score,i)=>({i,score})).sort((a,b)=>b.score-a.score);const winners=sorted.filter(x=>x.score===sorted[0].score);document.getElementById('championTitle').textContent=winners.length>1?'同点優勝おめでとう！':'優勝おめでとう！';document.getElementById('championName').textContent=winners.map(x=>who(x.i)).join(' ＆ ');document.getElementById('championScore').textContent='総合 '+cash(sorted[0].score);document.getElementById('championRanking').innerHTML=sorted.map((x,i)=>'<div>'+(x.score===sorted[0].score?'🏆':(i+1)+'位')+' '+who(x.i)+'　'+cash(x.score)+'</div>').join('');document.getElementById('championOverlay').hidden=false}
 function confirmHome(){if(confirm('対戦を終了してホームに戻りますか？ 現在の対戦結果は失われます。')){clearTimeout(timer);if(g)g.phase='over';showHome()}}
 
-// v0.42: Supabase lobby. Only the public publishable key is embedded.
+// v0.43: Supabase lobby. Only the public publishable key is embedded.
 const SB_URL='https://jfslhublwjimjkafmdis.supabase.co';
 const SB_KEY='sb_publishable_4gJpilhMg3A_K9F4CNZR1w_dowZ2ZRq';
 let onlineSession=null,onlineRoom=null,onlinePlayer=null,onlinePoll=null;let onlineMembers=[];
@@ -778,7 +797,7 @@ async function leaveOnlineRoom(){onlineDisconnect();clearInterval(onlinePoll);on
 
 showHome();
 </script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}</script><script>
-// v0.42 two-person online beta. Host is the authority for game actions.
+// v0.43 two-person online beta. Host is the authority for game actions.
 // Supabase Realtime broadcast is ephemeral; games are not persisted and require host online.
 let og=null,ogSocket=null,ogReady=false,ogQueue=[],ogSelected=[],ogSeq=0,ogReconnect=null,ogConnecting=false,ogHeartbeat=null;
 const ogHost=()=>onlineRoom&&onlineSession?.user?.id===onlineRoom.host_id;
@@ -796,7 +815,7 @@ function onlineSend(type,data){if(!onlineRoom)return;if(!ogReady||ogSocket?.read
 function onlineReceive(m){if(!onlineRoom)return;
  if(m.type==='hello'&&ogHost()&&og){ogSendState();return}
  if(m.type==='state'&&m.data?.to===onlineSession.user.id){og=m.data.state;ogSelected=[];ogRender();return}
- if(m.type==='action'&&ogHost()&&og&&m.from===og.ids[og.turn]){ogApply(m.data,m.from)}
+ if(m.type==='action'&&ogHost()&&og&&og.ids.includes(m.from)){ogApply(m.data,m.from)}
 }
 function ogDeck(){let a=[];for(let s of ['♠','♥','♦','♣'])for(let n=1;n<=13;n++)a.push({s,n,id:s+n});for(let j=0;j<3;j++)a.push({s:'★',n:0,id:'j'+j});for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function ogVal(c){return c.n}
@@ -805,7 +824,7 @@ function ogWho(i){return og.names[i]}
 function ogCan(cards){if(!cards.length)return false;if(cards.length>1&&(cards[0].n===0||cards.some(c=>c.n!==cards[0].n)))return false;if(og.penalty&&cards[0].n!==og.penalty.rank)return false;return cards[0].n===0||cards[0].n===11||cards[0].s===og.suit||cards[0].n===og.top.n}
 async function onlineBegin(){if(!ogHost()||onlineMembers.length!==2)return;try{
  const d=ogDeck(),hands=[[],[]];for(let i=0;i<5;i++)for(let h of hands)h.push(d.pop());let top=d.pop();while(top.n===0){d.unshift(top);top=d.pop()}
- og={ids:onlineMembers.map(m=>m.user_id),names:onlineMembers.map(m=>m.nickname),hands,deck:d,discard:[],top,suit:top.s,turn:0,drawn:false,penalty:null,round:1,scores:[0,0],message:'ゲーム開始！ '+onlineMembers[0].nickname+'の番',over:false,seq:0};
+ og={ids:onlineMembers.map(m=>m.user_id),names:onlineMembers.map(m=>m.nickname),hands,deck:d,discard:[],top,suit:top.s,turn:0,drawn:false,penalty:null,round:1,scores:[0,0],message:'ゲーム開始！ '+onlineMembers[0].nickname+'の番',over:false,seq:0,pending:null};
  await sbRequest('/rest/v1/gabacho_rooms?id=eq.'+encodeURIComponent(onlineRoom.id),{method:'PATCH',body:JSON.stringify({status:'playing'})});ogSendState();onlineMsg('対戦開始！');
  }catch(e){onlineMsg('開始エラー：'+e.message)}}
 function ogPublic(i){return {...og,deck:undefined,discard:undefined,hands:og.hands.map((h,j)=>j===i?h:[]),counts:og.hands.map(h=>h.length),my:i,ids:undefined}}
@@ -813,13 +832,38 @@ function ogSendState(){if(!ogHost()||!og)return;for(let i=0;i<2;i++){let state=o
 function ogTake(p){if(!og.deck.length&&og.discard.length){og.deck=og.discard.splice(0);for(let i=og.deck.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[og.deck[i],og.deck[j]]=[og.deck[j],og.deck[i]]}og.round++}if(!og.deck.length)return false;og.hands[p].push(og.deck.pop());return true}
 function ogAdvance(steps=1){og.turn=(og.turn+steps)%2;og.drawn=false;og.message=ogWho(og.turn)+'の番'}
 function ogEnd(type,winner,loser,extra=1){let base=(og.hands[loser].length*100)*(2**(og.round-1))*extra*(2**og.hands[winner].filter(c=>c.n===0).length);og.scores[winner]+=base;og.scores[loser]-=base;og.message=type+'！ '+ogWho(winner)+' +'+base+'点 / '+ogWho(loser)+' -'+base+'点';og.over=true}
-function ogAfterPlay(p,cs){let target=cs.reduce((a,c)=>a+c.n,0),other=1-p;
- if(ogSum(og.hands[other])===target){if(ogSum(og.hands[p])===target)ogEnd('ドン返し',p,other,2**og.hands[other].filter(c=>c.n===0).length);else ogEnd('ドン',other,p);return}
- if(cs[0].n===1){ogAdvance(2);return}ogAdvance(1)}
-function ogApply(action,from){if(!ogHost()||!og||og.over)return;let p=og.ids.indexOf(from);if(p!==og.turn)return;try{
+function ogAfterPlay(p,cs){
+ const target=cs.reduce((a,c)=>a+c.n,0),other=1-p;
+ if(ogSum(og.hands[other])===target){
+   og.pending={stage:'don',caller:other,owner:p,target,kind:'normal',steps:cs[0].n===1?1+cs.length:1};
+   og.message=ogWho(other)+'：ドンを宣言しますか？';return;
+ }
+ ogAdvance(cs[0].n===1?1+cs.length:1);
+}
+function ogResolveDecision(p,yes){
+ const d=og.pending;if(!d||d.stage==='')return;
+ if(d.stage==='don'&&p===d.caller){
+   if(!yes){og.pending=null;if(d.kind==='normal')ogAdvance(d.steps);else og.message=ogWho(p)+'が引きドンを見送った';return}
+   if(ogSum(og.hands[d.owner])===d.target){
+     og.pending={...d,stage:'reverse'};og.message=ogWho(d.owner)+'：ドン返ししますか？';return;
+   }
+   og.pending=null;ogEnd(d.kind==='draw'?'引きドン':'ドン',d.caller,d.owner,d.kind==='draw'?2:1);return;
+ }
+ if(d.stage==='reverse'&&p===d.owner){
+   og.pending=null;
+   if(yes){
+     // Draw-Don reversal is x4; ordinary reversal uses both players' joker multipliers.
+     const callerJ=2**og.hands[d.caller].filter(c=>c.n===0).length;
+     ogEnd(d.kind==='draw'?'引きドン返し':'ドン返し',d.owner,d.caller,(d.kind==='draw'?4:1)*callerJ);
+   }else ogEnd(d.kind==='draw'?'引きドン':'ドン',d.caller,d.owner,d.kind==='draw'?2:1);
+ }
+}
+function ogApply(action,from){if(!ogHost()||!og||og.over)return;let p=og.ids.indexOf(from);if(p<0)return;try{
+ if(action.type==='decision'){if(!og.pending)return;ogResolveDecision(p,action.yes===true);ogSendState();return}
+ if(og.pending||p!==og.turn)return;
  if(action.type==='draw'){
  if(og.penalty){let n=og.penalty.count;og.penalty=null;for(let i=0;i<n;i++)ogTake(p);og.drawn=true;og.message=ogWho(p)+'がペナルティで'+n+'枚引いた'}
- else {if(og.drawn)return;if(!ogTake(p))return;og.drawn=true;og.message=ogWho(p)+'が1枚引いた';if(ogSum(og.hands[p])===og.top.target&&og.top.target!==undefined&&og.top.owner!==p){ogEnd('引きドン',p,og.top.owner,2)}}
+ else {if(og.drawn)return;if(!ogTake(p))return;og.drawn=true;og.message=ogWho(p)+'が1枚引いた';if(ogSum(og.hands[p])===og.top.target&&og.top.target!==undefined&&og.top.owner!==p){og.pending={stage:'don',caller:p,owner:og.top.owner,target:og.top.target,kind:'draw',steps:1};og.message=ogWho(p)+'：引きドンを宣言しますか？'}}
  }else if(action.type==='pass'){
  if(!og.drawn)return;ogAdvance();
  }else if(action.type==='play'){
@@ -831,12 +875,13 @@ function ogApply(action,from){if(!ogHost()||!og||og.over)return;let p=og.ids.ind
  }
  ogSendState();
  }catch(e){console.error(e);onlineMsg('操作エラー：'+e.message)}}
-function ogAction(type){if(!og||og.over)return;let me=og.ids?og.ids.indexOf(onlineSession.user.id):og.my;if(me!==og.turn)return;
+function ogAction(type){if(!og||og.over)return;let me=og.ids?og.ids.indexOf(onlineSession.user.id):og.my;if(type!=='decision'&&(me!==og.turn||og.pending))return;
  let data={type};if(type==='play'){let hand=og.hands[me],cs=hand.filter(c=>ogSelected.includes(c.id));if(!cs.length)return;data.ids=cs.map(c=>c.id);if(cs[0].n===0||cs[0].n===11){let suit=prompt('次のマークを選択：♠ ♥ ♦ ♣','♠');if(!['♠','♥','♦','♣'].includes(suit))return;data.suit=suit}}
  if(ogHost())ogApply(data,onlineSession.user.id);else onlineSend('action',data);ogSelected=[];ogRender()}
-function ogRender(){let box=document.getElementById('onlineGame');if(!og){box.hidden=true;return}box.hidden=false;let me=og.ids?og.ids.indexOf(onlineSession.user.id):og.my;let hand=og.hands[me]||[],their=1-me,turn=og.turn===me&&!og.over;
+function ogActionDecision(yes){if(!og?.pending)return;const data={type:'decision',yes};if(ogHost())ogApply(data,onlineSession.user.id);else onlineSend('action',data)}
+function ogRender(){let box=document.getElementById('onlineGame');if(!og){box.hidden=true;return}box.hidden=false;let me=og.ids?og.ids.indexOf(onlineSession.user.id):og.my;let hand=og.hands[me]||[],their=1-me,turn=og.turn===me&&!og.over&&!og.pending;let deciding=og.pending&&(og.pending.stage==='don'?og.pending.caller:og.pending.owner)===me;
  const safe=t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');const card=c=>c.n===0?'🃏':c.s+(c.n===1?'A':c.n===11?'J':c.n===12?'Q':c.n===13?'K':c.n);
- box.innerHTML='<h3>🃏 オンライン対戦 β</h3><p>'+safe(og.names[their])+'（相手）：'+og.counts?.[their]+'枚</p><div class="og-cards">'+Array.from({length:Math.min(og.counts?.[their]||og.hands[their].length,14)},()=>'<span class="og-back"></span>').join('')+'</div><p>場のカード：<b>'+safe(card(og.top))+'</b>　指定：'+safe(og.suit)+'</p><p>得点：'+safe(og.names[me])+' '+og.scores[me]+' / '+safe(og.names[their])+' '+og.scores[their]+'</p><p class="og-msg">'+safe(og.message)+'</p><p>自分の手札</p><div class="og-cards">'+hand.map(c=>'<button class="og-card '+(ogSelected.includes(c.id)?'sel':'')+'" '+(!turn?'disabled':'')+' data-card="'+c.id+'">'+safe(card(c))+'</button>').join('')+'</div><div class="og-actions"><button id="ogPlay" '+(!turn?'disabled':'')+'>カードを出す</button><button id="ogDraw" '+(!turn||og.drawn?'disabled':'')+'>'+(og.penalty?og.penalty.count+'枚引く':'1枚引く')+'</button><button id="ogPass" '+(!turn||!og.drawn?'disabled':'')+'>ターン終了</button></div>'+(og.over?'<p>ゲーム終了。新しい部屋で再戦してください。</p>':'');
- box.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{let id=el.dataset.card;ogSelected=ogSelected.includes(id)?ogSelected.filter(x=>x!==id):[...ogSelected,id];ogRender()});box.querySelector('#ogPlay').onclick=()=>ogAction('play');box.querySelector('#ogDraw').onclick=()=>ogAction('draw');box.querySelector('#ogPass').onclick=()=>ogAction('pass');
+ box.innerHTML='<h3>🃏 オンライン対戦 β</h3><p>'+safe(og.names[their])+'（相手）：'+og.counts?.[their]+'枚</p><div class="og-cards">'+Array.from({length:Math.min(og.counts?.[their]||og.hands[their].length,14)},()=>'<span class="og-back"></span>').join('')+'</div><p>場のカード：<b>'+safe(card(og.top))+'</b>　指定：'+safe(og.suit)+'</p><p>得点：'+safe(og.names[me])+' '+og.scores[me]+' / '+safe(og.names[their])+' '+og.scores[their]+'</p><p class="og-msg">'+safe(og.message)+'</p><p>自分の手札</p><div class="og-cards">'+hand.map(c=>'<button class="og-card '+(ogSelected.includes(c.id)?'sel':'')+'" '+(!turn?'disabled':'')+' data-card="'+c.id+'">'+safe(card(c))+'</button>').join('')+'</div>'+(deciding?'<div class="og-decision"><p>✨ '+(og.pending.stage==='reverse'?'ドン返し':'ドン')+'できます！ 宣言しますか？</p><button id="ogYes">宣言する！</button><button id="ogNo">見送る</button></div>':'')+'<div class="og-actions"><button id="ogPlay" '+(!turn?'disabled':'')+'>カードを出す</button><button id="ogDraw" '+(!turn||og.drawn?'disabled':'')+'>'+(og.penalty?og.penalty.count+'枚引く':'1枚引く')+'</button><button id="ogPass" '+(!turn||!og.drawn?'disabled':'')+'>ターン終了</button></div>'+(og.over?'<p>ゲーム終了。新しい部屋で再戦してください。</p>':'');
+ box.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{let id=el.dataset.card;ogSelected=ogSelected.includes(id)?ogSelected.filter(x=>x!==id):[...ogSelected,id];ogRender()});box.querySelector('#ogPlay').onclick=()=>ogAction('play');box.querySelector('#ogDraw').onclick=()=>ogAction('draw');box.querySelector('#ogPass').onclick=()=>ogAction('pass');if(deciding){box.querySelector('#ogYes').onclick=()=>ogActionDecision(true);box.querySelector('#ogNo').onclick=()=>ogActionDecision(false)}
 }
 </script></body></html>
