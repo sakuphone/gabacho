@@ -519,13 +519,55 @@ section.details{margin-top:5px!important}
 @media(max-width:380px){#players.seats-4{height:clamp(194px,52vw,205px)!important}}
 #onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
 
-/* v0.57: 山札の右に現在のマークを大きく表示 */
+/* v0.58: 山札の右に現在のマークを大きく表示 */
 .current-suit{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:78px;align-self:center}
 .current-suit-label{font-size:11px;color:#f6e5ae;font-weight:750;white-space:nowrap}
 .current-suit-symbol{display:flex;align-items:center;justify-content:center;width:72px;height:77px;border:2px solid #e5c46e;border-radius:13px;background:#fffaf0;color:#1d302a;font-size:59px;line-height:1;box-shadow:0 3px 12px #001e1870}
 .current-suit-symbol.red{color:#c92d42}
 @media(max-width:420px){.current-suit{min-width:61px;gap:3px}.current-suit-label{font-size:9px}.current-suit-symbol{width:59px;height:67px;font-size:51px}}
 </style><style id="online-style">#onlineScreen .online-fields{display:grid;gap:12px;margin:15px auto;max-width:330px}#onlineScreen label{display:grid;gap:5px;text-align:left;color:#f5e1ac;font-weight:700}#onlineScreen input{width:100%;padding:13px;border-radius:10px;border:1px solid #d6b967;background:#fffdf6;color:#17382c;font-size:17px}#onlineMessage{min-height:2em;color:#ffe18d;white-space:pre-wrap}#onlineLobby{margin:16px auto;padding:14px;border:1px solid #d7b66b;border-radius:15px;background:#08382d}#onlineMembers{margin:12px 0;text-align:left;line-height:2}#onlineRoomCode{letter-spacing:3px;color:#ffe18d}#onlineScreen .entry-primary{margin:5px}#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
+
+/* v0.58: online match uses the CPU felt-table visual language. */
+#onlineGame.og-felt{margin:15px -5px 8px;padding:10px 8px 14px;border:2px solid #cba95c;border-radius:22px;background:radial-gradient(ellipse at 50% 35%,#127c5c 0%,#07503f 70%,#05392d 100%);box-shadow:inset 0 0 26px #021e1866,0 7px 18px #001a1666;color:#ffedc1}
+#onlineGame .og-heading{font-size:12px;letter-spacing:2px;color:#f4d27d;font-weight:800;margin:3px 0 8px}
+#onlineGame .og-opponent{border:2px solid #b99a50;border-radius:48% 48% 22% 22%;padding:10px 8px 15px;background:radial-gradient(ellipse,#168365,#07503f);display:flex;flex-direction:column;align-items:center;gap:4px;min-height:150px}
+#onlineGame .og-avatar{width:58px;height:58px;border:3px solid #f4e6bf;border-radius:17px;display:grid;place-items:center;font-size:33px;background:linear-gradient(140deg,#45cbb6,#247d85);box-shadow:0 2px 8px #0005}
+#onlineGame .og-opponent.og-active .og-avatar{box-shadow:0 0 0 3px #ffdc71,0 0 16px #ffd25a}
+#onlineGame .og-name{font-size:14px;font-weight:800;color:#fff2ce}
+#onlineGame .og-score{font-size:12px;color:#e6d59e}
+#onlineGame .og-back-row{display:flex;align-items:center;justify-content:center;min-height:44px;padding-left:15px;margin:3px 0 0}
+#onlineGame .og-back-row .og-back{display:block;flex:none;width:29px;height:42px;margin-left:-14px;border:2px solid #f0e7cf;border-radius:5px;background:repeating-linear-gradient(45deg,#194c91 0 5px,#286db6 5px 9px,#194c91 9px 14px);box-shadow:1px 2px 4px #0008}
+#onlineGame .og-back-more{font-size:11px;margin-left:7px;color:#ffdf91}
+#onlineGame .og-board{margin:-3px 0 8px;border:2px solid #cba95c;border-radius:18px;padding:10px 6px 12px;background:radial-gradient(ellipse,#0e7354,#084b3a);position:relative}
+#onlineGame .og-board-title{font-size:12px;font-weight:800;color:#f4e7b8;margin:0 0 9px}
+#onlineGame .og-piles{display:flex;justify-content:center;align-items:center;gap:clamp(9px,3vw,20px)}
+#onlineGame .og-pile{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+#onlineGame .og-pile-label{font-size:11px;font-weight:700;color:#f4e7b8}
+#onlineGame .og-face{width:65px;height:89px;border:3px solid #e6dfca;border-radius:9px;background:#fff9ed;color:#182b25;box-shadow:0 4px 10px #0008;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:6px 3px;font-weight:900;font-size:21px}
+#onlineGame .og-face.og-red{color:#c52d43}
+#onlineGame .og-face .og-bigpip{font-size:34px;line-height:1}
+#onlineGame .og-deck{width:65px;height:89px;border:3px solid #f2ead0;border-radius:9px;background:repeating-linear-gradient(45deg,#194c91 0 5px,#286db6 5px 9px,#194c91 9px 14px);display:grid;place-items:center;box-shadow:3px 3px 0 #0b284a,0 5px 10px #0007;color:#e5f0ff;font-size:28px}
+#onlineGame .og-deck:before{content:'✦';border:2px solid #d9e7ff;padding:7px 11px;border-radius:5px;background:#ffffff1a}
+#onlineGame .og-suit-tile{width:70px;height:89px;border:2px solid #d5b45c;border-radius:12px;background:#fffaf0;display:grid;place-items:center;font-size:48px;font-weight:900;box-shadow:0 4px 10px #0007;color:#192923}
+#onlineGame .og-suit-tile.og-red{color:#c52d43}
+#onlineGame .og-msg{padding:9px 7px;margin:8px 0;border:1px solid #9f8754;border-radius:10px;background:#0a4536;font-weight:700;font-size:13px;min-height:36px}
+#onlineGame .og-hand-area{padding:8px 0 0}
+#onlineGame .og-hand-title{font-size:15px;font-weight:800;color:#f3dfaa;text-align:left;margin:6px 3px}
+#onlineGame .og-cards.og-hand{display:flex;flex-wrap:nowrap;justify-content:center;gap:0;overflow:visible;padding:19px 0 14px;margin:0;min-height:110px}
+#onlineGame button.og-card{position:relative;flex:0 1 52px;min-width:0;width:52px;height:81px;margin-left:0;padding:8px 0 0;border:2px solid #d5d5d5;border-radius:8px;background:#fffaf0;color:#132e28;font-size:19px;font-weight:900;box-shadow:0 3px 7px #0008;touch-action:manipulation}
+#onlineGame button.og-card.og-red{color:#c52d43}
+#onlineGame button.og-card.og-playable:not(:disabled){border-color:#ffe08b;box-shadow:0 0 0 2px #f2b94b,0 0 15px 4px #ffcf5d9c;animation:glow 2s ease-in-out infinite alternate}
+#onlineGame button.og-card.og-unplayable:not(:disabled){opacity:.65}
+#onlineGame button.og-card.sel,#onlineGame button.og-card.sel.og-playable:not(:disabled){z-index:10;transform:translateY(-12px);border-color:#fff1ad;background:#fff2c3;box-shadow:0 0 0 3px #ffd15c,0 0 18px #ffe17b}
+#onlineGame .og-actions{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:5px 0}
+#onlineGame .og-actions button{border-radius:20px;padding:12px 13px;min-height:43px;background:linear-gradient(#ffe6a3,#d8a84b);color:#173a2e;font-weight:800}
+#onlineGame .og-actions #ogDraw{background:#d4e8df}
+#onlineGame .og-actions #ogPass{background:#b3cfc5}
+#onlineGame .og-actions button:disabled{opacity:.4}
+#onlineGame .og-me-score{font-size:12px;color:#e6d59e;margin:3px}
+#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:12px;margin:10px 0;background:#174b39}
+#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
+@media(max-width:370px){#onlineGame .og-piles{gap:8px}#onlineGame .og-face,#onlineGame .og-deck{width:59px;height:82px}#onlineGame .og-suit-tile{width:61px;height:82px}#onlineGame button.og-card{font-size:17px}}
 </style><style>
 #onlineGame{margin:20px 0;padding:16px 12px;border:1px solid #dfbd71;border-radius:18px;background:#093d31;color:#ffedc1;text-align:center}
 #onlineGame .og-cards{display:flex;justify-content:center;flex-wrap:wrap;gap:5px;margin:12px 0}
@@ -539,21 +581,21 @@ section.details{margin-top:5px!important}
 #onlineGame .og-msg{min-height:28px;margin:10px 0}
 #onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
 .cpu-difficulty-desc{margin:4px 0 16px;padding:12px 14px;border:1px solid #b99a56;border-radius:12px;background:#194936;color:#f5e9cb;line-height:1.6;font-size:14px}
-/* v0.57: 設定フォームの選択欄を右端に整列 */
+/* v0.58: 設定フォームの選択欄を右端に整列 */
 #settingsScreen .settings-fields{width:100%;max-width:390px;margin:12px auto 24px;box-sizing:border-box}
 #settingsScreen .settings-fields label{display:grid;grid-template-columns:minmax(0,1fr) 154px;align-items:center;gap:12px;min-height:72px;padding:12px 16px;margin:10px 0;box-sizing:border-box}
 #settingsScreen .settings-fields select{display:block;width:100%;min-width:0;max-width:none;box-sizing:border-box;margin:0;padding:11px 30px 11px 14px;text-align:left;text-align-last:left;border-radius:12px;border:1px solid rgba(155,126,65,.28);font-size:17px;font-weight:800;appearance:auto;-webkit-appearance:menulist}
 @media(max-width:390px){#settingsScreen .settings-fields label{grid-template-columns:minmax(0,1fr) 144px;padding:11px 12px;gap:8px}#settingsScreen .settings-fields select{font-size:16px;padding-left:10px}}
 
-/* v0.57: CPUの説明を選択欄と同じ枠内に収める */
+/* v0.58: CPUの説明を選択欄と同じ枠内に収める */
 #settingsScreen .settings-fields label:has(#cpuDifficulty){row-gap:8px}
 #settingsScreen .settings-fields .cpu-difficulty-desc{grid-column:1/-1;grid-row:2;margin:0;padding:12px 0 2px;border:0;border-top:1px solid rgba(220,188,111,.4);border-radius:0;background:transparent;color:#f5e9cb;line-height:1.65;font-size:14px;font-weight:400;min-width:0}
 
-/* v0.57: 長い難易度名を省略せず表示し、矢印と文字が重ならないよう調整 */
+/* v0.58: 長い難易度名を省略せず表示し、矢印と文字が重ならないよう調整 */
 #settingsScreen #cpuDifficulty{font-size:15px!important;letter-spacing:-.04em;padding-left:10px!important;padding-right:24px!important;appearance:none!important;-webkit-appearance:none!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2316382d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 10 5 5 5-5'/%3E%3C/svg%3E")!important;background-repeat:no-repeat!important;background-position:right 7px center!important;background-size:13px 13px!important;}
 @media(max-width:390px){#settingsScreen .settings-fields label:has(#cpuDifficulty){grid-template-columns:minmax(0,1fr) 150px!important}}
 </style></head><body>
-<header class="brand"><h1>がばちょ <small>v0.57</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
+<header class="brand"><h1>がばちょ <small>v0.58</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
 <div id="onlineScreen" class="entry-screen" hidden><div class="entry-overline">ONLINE LOBBY · BETA</div><h2 class="entry-heading">🌐 オンライン対戦ロビー</h2><p class="entry-lead">部屋コードを共有して友達と集合</p><div class="online-fields"><label>ニックネーム<input id="onlineName" maxlength="20" placeholder="名前を入力" autocomplete="nickname"></label><label>部屋コード<input id="onlineCode" maxlength="8" placeholder="例：AB12CD" autocapitalize="characters"></label></div><button class="entry-primary" onclick="createOnlineRoom()">部屋を作る</button><button class="entry-primary" onclick="joinOnlineRoom()">コードで参加</button><p id="onlineMessage" role="status"></p><div id="onlineLobby" hidden><h3>部屋コード：<span id="onlineRoomCode"></span></h3><button onclick="copyOnlineCode()">コードをコピー</button><div id="onlineMembers"></div><button id="onlineStart" onclick="startOnlineMatch()" hidden>2人でゲーム開始</button><p class="muted">2人対戦β版。ホストが接続中の間、ゲームが同期されます。通信が切れたら新しい部屋でやり直してください。</p><div id="onlineGame" hidden></div><button class="entry-back" onclick="leaveOnlineRoom()">部屋から退出</button></div><button class="entry-back" onclick="leaveOnlineRoom();showHome()">← ホームへ戻る</button></div>
 <div id="rulesScreen" class="entry-screen rules-screen" hidden><div class="entry-overline">HOW TO PLAY</div><h2 class="entry-heading">📖 がばちょのルール</h2><div class="rules-body"><h3>🎯 勝利条件</h3><p>相手が場に出したカードの数字の合計と、自分の手札の数字の合計が一致したら「ドン！」。ドンが成立するとそのゲームは終了し、得点を精算します。設定したゲーム数が終わった時点の総合得点が最も高い人が優勝！</p><h3>🃏 基本の出し方</h3><p>最初の手札は5枚。場と同じマークか同じ数字のカードを出せます。同じ数字はまとめて複数枚出せます。Jとジョーカーはいつでも出せて、次のマークを指定できます。Aは1、ジョーカーは0として計算します。</p><h3>⚡ 特殊カード</h3><p><b>A：</b>次の人を1人飛ばします。複数枚ならその枚数分飛ばします。<br><b>2・8：</b>次の人は追加で2枚引きます。同じ数字を重ねて返せます。<br><b>ジョーカー：</b>次の人は追加で4枚引きます。ジョーカー同士で重ねられます。</p><h3>🔁 ターンとドロー</h3><p>出せるカードがなければ1枚引きます。1ターンに任意で引けるのは1枚まで。2・8などで追加のカードを引いた後も、出せるカードがなければさらに1枚引く必要があります。</p><h3>💰 ドンと得点</h3><p>通常ドンは、ドンした人以外の手札枚数合計×100点が基本。ドンした人の手札のジョーカー1枚ごとに獲得点数が2倍になります。ドンされた人も手札合計が一致すれば「ドン返し」が可能で、通常ドン返しは2倍です。</p><p>1枚引いて成立する「引きドン」は基本点が2倍、「引きドン返し」は4倍。自分の出した場札に引きドンする「オナニー引きドン」は2倍で、ほかの全員が均等に支払います。山札の再シャッフルで巡目が進むと得点倍率も上がります。</p><h3>🏆 最終優勝</h3><p>各ゲームの得点を累積し、全ゲーム終了後に総合1位を発表。同点1位は同時優勝です。</p></div><button class="entry-primary" onclick="showHome()">ホームへ戻る</button></div>
@@ -961,7 +1003,20 @@ function ogAction(type){if(!og||og.over)return;let me=og.ids?og.ids.indexOf(onli
 function ogActionDecision(yes){if(!og?.pending)return;const data={type:'decision',yes};if(ogHost())ogApply(data,onlineSession.user.id);else onlineSend('action',data)}
 function ogRender(){let box=document.getElementById('onlineGame');if(!og){box.hidden=true;return}box.hidden=false;let me=og.ids?og.ids.indexOf(onlineSession.user.id):og.my;let hand=og.hands[me]||[],their=1-me,turn=og.turn===me&&!og.over&&!og.pending;let deciding=og.pending&&(og.pending.stage==='don'?og.pending.caller:og.pending.owner)===me;
  const safe=t=>String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');const card=c=>c.n===0?'🃏':c.s+(c.n===1?'A':c.n===11?'J':c.n===12?'Q':c.n===13?'K':c.n);
- box.innerHTML='<h3>🃏 オンライン対戦 β</h3><p>'+safe(og.names[their])+'（相手）：'+og.counts?.[their]+'枚</p><div class="og-cards">'+Array.from({length:Math.min(og.counts?.[their]||og.hands[their].length,14)},()=>'<span class="og-back"></span>').join('')+'</div><p>場のカード：<b>'+safe(card(og.top))+'</b>　指定：'+safe(og.suit)+'</p><p>得点：'+safe(og.names[me])+' '+og.scores[me]+' / '+safe(og.names[their])+' '+og.scores[their]+'</p><p class="og-msg">'+safe(og.message)+'</p><p>自分の手札</p><div class="og-cards">'+hand.map(c=>'<button class="og-card '+(ogSelected.includes(c.id)?'sel':'')+'" '+(!turn?'disabled':'')+' data-card="'+c.id+'">'+safe(card(c))+'</button>').join('')+'</div>'+(deciding?'<div class="og-decision"><p>✨ '+(og.pending.stage==='reverse'?'ドン返し':'ドン')+'できます！ 宣言しますか？</p><button id="ogYes">宣言する！</button><button id="ogNo">見送る</button></div>':'')+'<div class="og-actions"><button id="ogPlay" '+(!turn?'disabled':'')+'>カードを出す</button><button id="ogDraw" '+(!turn||og.drawn?'disabled':'')+'>'+(og.penalty?og.penalty.count+'枚引く':'1枚引く')+'</button><button id="ogPass" '+(!turn||!og.drawn?'disabled':'')+'>ターン終了</button></div>'+(og.over?'<p>ゲーム終了。新しい部屋で再戦してください。</p>':'');
+ const red=x=>x==='♥'||x==='♦';
+ const selected=hand.filter(c=>ogSelected.includes(c.id));
+ const canPlay=c=>{if(!turn)return false;if(selected.length)return selected[0].n!==0&&c.n===selected[0].n;if(og.penalty)return c.n===og.penalty.rank;return c.n===0||c.n===11||c.s===og.suit||c.n===og.top.n};
+ const theirCount=og.counts?.[their]??og.hands[their]?.length??0;
+ const face=(c)=>'<div class="og-face '+(red(c.s)?'og-red':'')+'"><span>'+safe(card(c))+'</span><span class="og-bigpip">'+safe(c.n===0?'🃏':c.s)+'</span></div>';
+ box.classList.add('og-felt');
+ box.innerHTML='<div class="og-heading">GABACHO · ONLINE</div>'+
+ '<div class="og-opponent '+(og.turn===their&&!og.over?'og-active':'')+'"><div class="og-avatar">🧑</div><div class="og-name">'+safe(og.names[their])+'</div><div class="og-score">'+theirCount+'枚 · '+Number(og.scores[their]||0).toLocaleString('ja-JP')+' pt</div><div class="og-back-row">'+Array.from({length:Math.min(theirCount,12)},()=>'<span class="og-back"></span>').join('')+(theirCount>12?'<span class="og-back-more">+'+(theirCount-12)+'</span>':'')+'</div></div>'+
+ '<div class="og-board"><div class="og-board-title">場・山札</div><div class="og-piles"><div class="og-pile">'+face(og.top)+'<span class="og-pile-label">場のカード</span></div><div class="og-pile"><div class="og-deck"></div><span class="og-pile-label">山札</span></div><div class="og-pile"><div class="og-suit-tile '+(red(og.suit)?'og-red':'')+'">'+safe(og.suit)+'</div><span class="og-pile-label">現在のマーク</span></div></div></div>'+
+ '<div class="og-msg" role="status">'+safe(og.message)+'</div>'+
+ (deciding?'<div class="og-decision"><p>✨ '+(og.pending.stage==='reverse'?'ドン返し':'ドン')+'できます！ 宣言しますか？</p><button id="ogYes">宣言する！</button><button id="ogNo">見送る</button></div>':'')+
+ '<div class="og-hand-area"><div class="og-hand-title">あなたの手札 <span class="og-me-score">'+Number(og.scores[me]||0).toLocaleString('ja-JP')+' pt</span></div><div class="og-cards og-hand">'+hand.map(c=>'<button class="og-card '+(red(c.s)?'og-red ':'')+(ogSelected.includes(c.id)?'sel ':'')+(canPlay(c)?'og-playable':'og-unplayable')+'" '+(!turn?'disabled':'')+' data-card="'+safe(c.id)+'">'+safe(card(c))+'</button>').join('')+'</div></div>'+
+ '<div class="og-actions"><button id="ogPlay" '+(!turn?'disabled':'')+'>カードを出す</button><button id="ogDraw" '+(!turn||og.drawn?'disabled':'')+'>'+(og.penalty?'追加で'+og.penalty.count+'枚引く':'1枚引く')+'</button><button id="ogPass" '+(!turn||!og.drawn?'disabled':'')+'>ターン終了</button></div>'+
+ (og.over?'<p>ゲーム終了。新しい部屋で再戦してください。</p>':'');
  box.querySelectorAll('[data-card]').forEach(el=>el.onclick=()=>{let id=el.dataset.card;ogSelected=ogSelected.includes(id)?ogSelected.filter(x=>x!==id):[...ogSelected,id];ogRender()});box.querySelector('#ogPlay').onclick=()=>ogAction('play');box.querySelector('#ogDraw').onclick=()=>ogAction('draw');box.querySelector('#ogPass').onclick=()=>ogAction('pass');if(deciding){box.querySelector('#ogYes').onclick=()=>ogActionDecision(true);box.querySelector('#ogNo').onclick=()=>ogActionDecision(false)}
 }
 </script></body></html>
