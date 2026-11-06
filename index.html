@@ -609,7 +609,7 @@ section.details{margin-top:5px!important}
 #onlineGame .og-suit-options button:nth-child(2),#onlineGame .og-suit-options button:nth-child(3){color:#c52d43}
 #onlineGame .og-suit-cancel{margin-top:9px;background:#c5d7ce;color:#163a2d}
 </style><style id="v069-ranking-style">.ranking-filters{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}.ranking-filters label{color:#f6e0a7;font-size:13px}.ranking-filters select{display:block;width:100%;margin-top:6px;border-radius:10px;padding:10px;color:#123c30;background:#fff8e7}.ranking-rows{margin:14px 0;text-align:left}.ranking-row{display:grid;grid-template-columns:35px 1fr auto;gap:9px;align-items:center;background:#0a392d;border:1px solid #bd995d70;border-radius:12px;padding:12px;margin:7px 0;color:#fff5d9}.ranking-row small{display:block;opacity:.7;font-size:11px}.ranking-row strong{color:#ffda80}.ranking-entry{border:1px solid #d8b46d80;border-radius:12px;padding:12px;margin:12px 0}.ranking-entry p{font-size:13px}.ranking-entry input{width:100%;padding:11px;border-radius:9px;border:1px solid #d8b46d;margin-bottom:8px;background:#fff;color:#142f26}.ranking-entry button{margin:0!important}.ranking-entry [role=status]{font-size:12px;margin-top:7px;overflow-wrap:anywhere}</style></head><body>
-<header class="brand"><h1>がばちょ <small>v0.70</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
+<header class="brand"><h1>がばちょ <small>v0.71</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back" onclick="showRanking()">🏆 全国ランキング</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
 <div id="onlineScreen" class="entry-screen" hidden><div class="entry-overline">ONLINE LOBBY · BETA</div><h2 class="entry-heading">🌐 オンライン対戦ロビー</h2><p class="entry-lead">部屋コードを共有して友達と集合</p><div class="online-fields"><label>ニックネーム<input id="onlineName" maxlength="20" placeholder="名前を入力" autocomplete="nickname"></label><label>部屋コード<input id="onlineCode" maxlength="8" placeholder="例：AB12CD" autocapitalize="characters"></label></div><button class="entry-primary" onclick="createOnlineRoom()">部屋を作る</button><button class="entry-primary" onclick="joinOnlineRoom()">コードで参加</button><p id="onlineMessage" role="status"></p><div id="onlineLobby" hidden><h3>部屋コード：<span id="onlineRoomCode"></span></h3><button onclick="copyOnlineCode()">コードをコピー</button><div id="onlineMembers"></div><button id="onlineStart" onclick="startOnlineMatch()" hidden>ゲーム開始</button><p class="muted">2〜3人対戦β版。参加人数に合わせて開始します。ホストが接続中の間、ゲームが同期されます。通信が切れたら新しい部屋でやり直してください。</p><div id="onlineGame" hidden></div><button class="entry-back" onclick="leaveOnlineRoom()">部屋から退出</button></div><button class="entry-back" onclick="leaveOnlineRoom();showHome()">← ホームへ戻る</button></div>
 <div id="rulesScreen" class="entry-screen rules-screen" hidden><div class="entry-overline">HOW TO PLAY</div><h2 class="entry-heading">📖 がばちょのルール</h2><div class="rules-body"><h3>🎯 勝利条件</h3><p>相手が場に出したカードの数字の合計と、自分の手札の数字の合計が一致したら「ドン！」。ドンが成立するとそのゲームは終了し、得点を精算します。設定したゲーム数が終わった時点の総合得点が最も高い人が優勝！</p><h3>🃏 基本の出し方</h3><p>最初の手札は5枚。場と同じマークか同じ数字のカードを出せます。同じ数字はまとめて複数枚出せます。Jとジョーカーはいつでも出せて、次のマークを指定できます。Aは1、ジョーカーは0として計算します。</p><h3>⚡ 特殊カード</h3><p><b>A：</b>次の人を1人飛ばします。複数枚ならその枚数分飛ばします。<br><b>2・8：</b>次の人は追加で2枚引きます。同じ数字を重ねて返せます。<br><b>ジョーカー：</b>次の人は追加で4枚引きます。ジョーカー同士で重ねられます。</p><h3>🔁 ターンとドロー</h3><p>出せるカードがなければ1枚引きます。1ターンに任意で引けるのは1枚まで。2・8などで追加のカードを引いた後も、出せるカードがなければさらに1枚引く必要があります。</p><h3>💰 ドンと得点</h3><p>通常ドンは、ドンした人以外の手札枚数合計×100点が基本。ドンした人の手札のジョーカー1枚ごとに獲得点数が2倍になります。ドンされた人も手札合計が一致すれば「ドン返し」が可能で、通常ドン返しは2倍です。</p><p>1枚引いて成立する「引きドン」は基本点が2倍、「引きドン返し」は4倍。自分の出した場札に引きドンする「オナニー引きドン」は2倍で、ほかの全員が均等に支払います。山札の再シャッフルで巡目が進むと得点倍率も上がります。</p><h3>🏆 最終優勝</h3><p>各ゲームの得点を累積し、全ゲーム終了後に総合1位を発表。同点1位は同時優勝です。</p></div><button class="entry-primary" onclick="showHome()">ホームへ戻る</button></div>
@@ -705,12 +705,20 @@ function chooseSuit(s){if(g.phase==='suit')finish(0,g.suitCards,s)}
 function draw(){if(g.phase!=='turn'||g.turn!==0||g.drawn||g.penalty)return;if(!take(0)){if(!g.deck.length){g.drawn=true;render()}return;}g.drawn=true;if(total(g.hands[0])===g.board.target)startDecision('draw',g.board.owner,0);else render()}
 function pass(){if(g.phase==='turn'&&g.turn===0&&g.drawn)next()}
 // Play: every other player may declare. Draw: only drawing player may declare.
-function startDecision(kind,owner,drawer=null){let candidates=kind==='play'?g.hands.map((_,i)=>i).filter(i=>i!==owner&&total(g.hands[i])===g.board.target):[drawer].filter(i=>i!==null&&total(g.hands[i])===g.board.target);if(!candidates.length){if(kind==='play')next(g.skipSteps);else render();return}g.pending={kind,owner,drawer,candidates,callers:[],index:0,stage:'call'};g.phase='decision';advanceDecision()}
+function startDecision(kind,owner,drawer=null){let forcedNext=g.penalty&&g.penalty.rank===8?(owner+g.skipSteps)%g.count:-1;let candidates=kind==='play'?g.hands.map((_,i)=>i).filter(i=>i!==owner&&i!==forcedNext&&total(g.hands[i])===g.board.target):[drawer].filter(i=>i!==null&&total(g.hands[i])===g.board.target);if(!candidates.length){if(kind==='play')next(g.skipSteps);else render();return}g.pending={kind,owner,drawer,candidates,callers:[],index:0,stage:'call'};g.phase='decision';advanceDecision()}
 function advanceDecision(){let p=g.pending;if(!p)return;if(p.stage==='call'){while(p.index<p.candidates.length&&p.candidates[p.index]!==0){let cpu=p.candidates[p.index++];if(Math.random()<(g.difficulty==='easy'?.40:(g.difficulty==='hard'||g.difficulty==='expert')?.98:.82)){p.callers.push(cpu);say(who(cpu)+'が'+(p.kind==='draw'?'引きドン':'ドン')+'！')}else { /* CPUがドンを見送った事実は手札情報を漏らすため非表示 */ }}if(p.index<p.candidates.length){render();return}if(!p.callers.length){closeDecision();return}if(p.kind==='draw'&&p.owner===p.drawer){settle();return}if(p.owner>=0&&total(g.hands[p.owner])===g.board.target){p.stage='reverse';if(p.owner!==0){timer=setTimeout(()=>{if(g.pending===p){p.reverse=(g.difficulty==='easy'?Math.random()<.35:true);settle()}},450)}render();return}settle();return}}
 function renderDecision(){let p=g.pending;if(!p)return;let q=document.querySelector('#question'),b=document.querySelector('#decisionButtons');b.replaceChildren();let make=(s,fn,cls)=>{let x=document.createElement('button');x.textContent=s;x.onclick=fn;if(cls)x.className=cls;b.append(x)};if(p.stage==='call'&&p.candidates[p.index]===0){let self=p.kind==='draw'&&p.owner===0;q.textContent=(self?'オナニー引きドンのチャンス！（返し不可）':p.kind==='draw'?'引きドンのチャンス！':'ドンのチャンス！')+' '+(self?'自分の場札に対してドンできます！':who(p.owner)+'に対してドンできます！');make('ドン！',()=>{p.callers.push(0);p.index++;advanceDecision()},'danger');make('見送る',()=>{say('あなたはドンを見送った');p.index++;advanceDecision()},'secondary')}else if(p.stage==='reverse'&&p.owner===0){q.textContent='ドン返し可能！ 手札合計が場札のカード合計と一致';make('ドン返し！',()=>{p.reverse=true;settle()},'danger');make('返さない',()=>{p.reverse=false;settle()},'secondary')}else q.textContent='CPUのドン判定中…'}
 function closeDecision(){let p=g.pending;g.pending=null;g.phase='turn';if(p.kind==='play')next(g.skipSteps);else render()}
 function settle(){
  let p=g.pending;if(!p)return;
+ // A Don on an 8 is confirmed before the next player can stack an 8.
+ // Complete the mandatory draw first, then count the actual hand cards.
+ if(p.kind==='play'&&g.penalty&&g.penalty.rank===8){
+  const forced=(p.owner+g.skipSteps)%g.count, n=g.penalty.count;
+  g.penalty=null;let drawn=0;for(let i=0;i<n;i++){if(take(forced))drawn++;else break}
+  say(who(forced)+'がドン成立後に追加で'+drawn+'枚引いた');
+ }
+
  const reverse=!!p.reverse,owner=p.owner,callers=p.callers;
  const selfDraw=p.kind==='draw'&&owner===p.drawer;
  // A forced penalty draw counts as an ordinary Don, not a draw-Don.
@@ -1068,7 +1076,8 @@ function ogEnd(type,winner,loser,extra=1){
 }
 function ogAfterPlay(p,cs){
  const target=cs.reduce((a,c)=>a+c.n,0),steps=cs[0].n===1?2*cs.length:1;
- const callers=og.hands.map((h,i)=>i).filter(i=>i!==p&&ogSum(og.hands[i])===target);
+ const forcedNext=og.penalty&&og.penalty.rank===8?(p+steps)%og.hands.length:-1;
+ const callers=og.hands.map((h,i)=>i).filter(i=>i!==p&&i!==forcedNext&&ogSum(og.hands[i])===target);
  if(callers.length){og.pending={stage:'don',caller:callers[0],callers,accepted:[],owner:p,target,kind:'normal',steps};og.message=ogWho(callers[0])+'：ドンを宣言しますか？';return}
  ogAdvance(steps);
 }
@@ -1085,6 +1094,12 @@ function ogResolveDecision(p,yes){
  if(d.stage==='reverse'&&p===d.owner){og.pending=null;ogEndMultiple(d,yes);}
 }
 function ogEndMultiple(d,reversed){
+ // The Don is already decided: settle the 8's mandatory draw before scoring.
+ if(d.kind==='normal'&&og.penalty&&og.penalty.rank===8){
+  const forced=(d.owner+d.steps)%og.hands.length,n=og.penalty.count;
+  og.penalty=null;let drawn=0;for(let i=0;i<n;i++){if(ogTake(forced))drawn++;else break}
+  og.message=ogWho(forced)+'が追加で'+drawn+'枚引いた';
+ }
  if(d.accepted.length===1){
    const type=reversed?(d.kind==='draw'?'引きドン返し':'ドン返し'):(d.owner===d.accepted[0]?'オナニー引きドン':d.kind==='draw'?'引きドン':'ドン');
    ogEnd(type,reversed?d.owner:d.accepted[0],reversed?d.accepted[0]:d.owner);return;
