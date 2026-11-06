@@ -622,6 +622,11 @@ section.details{margin-top:5px!important}
 .board-cards .board-card:nth-child(6),.og-card-stack .og-face:nth-child(6){z-index:5}
 .board-cards .board-card{box-shadow:0 4px 8px #001e1880}
 .og-card-stack .og-face{box-shadow:0 4px 8px #001e1880}
+</style><style id="v073-suit-fix">
+#suitChoice:not([hidden]){display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;align-items:center;margin:12px 0;padding:12px;border:2px solid #d8b66c;border-radius:14px;background:#0b4938;position:relative;z-index:20}
+#suitChoice:not([hidden])::before{content:"次のマークをタップしてください";grid-column:1/-1;display:block;font-size:14px;font-weight:800;color:#ffe4a2;text-align:center}
+#suitChoice button[data-cpu-suit]{display:block;min-width:0;width:100%;margin:0;padding:10px 0;min-height:60px;border:2px solid #d7ba6b;border-radius:12px;background:#fff9ed;color:#142a22;font-size:34px;line-height:1;cursor:pointer;touch-action:manipulation;pointer-events:auto}
+#suitChoice button[data-cpu-suit]:nth-of-type(2),#suitChoice button[data-cpu-suit]:nth-of-type(3){color:#c52d43}
 </style></head><body>
 <header class="brand"><h1>がばちょ <small>v0.72</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back" onclick="showRanking()">🏆 全国ランキング</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
@@ -715,7 +720,21 @@ let cpuTopCardPending=null;
 function cancelTopCardChoice(){cpuTopCardPending=null;document.getElementById('topCardChoice').hidden=true}
 function selectTopCard(id){const cs=cpuTopCardPending;if(!cs||!g||g.phase!=='turn'||g.turn!==0)return;const chosen=cs.find(c=>String(c.id)===String(id));if(!chosen)return;cancelTopCardChoice();finish(0,[...cs.filter(c=>c.id!==chosen.id),chosen])}
 function play(){if(g.phase!=='turn'||g.turn!==0)return;let cs=g.selected.map(i=>g.hands[0][i]);if(!legal(cs))return;if(cs[0].n==='joker'||cs[0].n===11){g.suitCards=cs;g.phase='suit';render()}else finish(0,cs)}
-function chooseSuit(s){if(g.phase==='suit')finish(0,g.suitCards,s)}
+function chooseSuit(s){
+ if(!g||g.phase!=='suit'||!['♠','♥','♦','♣'].includes(s))return;
+ const cards=g.suitCards;
+ if(!Array.isArray(cards)||!cards.length)return;
+ g.suitCards=null;
+ finish(0,cards,s);
+}
+// Attach the suit actions to the persistent container instead of relying on
+// inline global handlers (which can fail in embedded iOS browsers).
+document.getElementById('suitChoice').addEventListener('click',event=>{
+ const button=event.target.closest('button[data-cpu-suit]');
+ if(!button)return;
+ event.preventDefault();
+ chooseSuit(button.dataset.cpuSuit);
+});
 function draw(){if(g.phase!=='turn'||g.turn!==0||g.drawn||g.penalty)return;if(!take(0)){if(!g.deck.length){g.drawn=true;render()}return;}g.drawn=true;if(total(g.hands[0])===g.board.target)startDecision('draw',g.board.owner,0);else render()}
 function pass(){if(g.phase==='turn'&&g.turn===0&&g.drawn)next()}
 // Play: every other player may declare. Draw: only drawing player may declare.
