@@ -628,7 +628,7 @@ section.details{margin-top:5px!important}
 #suitChoice button[data-cpu-suit]{display:block;min-width:0;width:100%;margin:0;padding:10px 0;min-height:60px;border:2px solid #d7ba6b;border-radius:12px;background:#fff9ed;color:#142a22;font-size:34px;line-height:1;cursor:pointer;touch-action:manipulation;pointer-events:auto}
 #suitChoice button[data-cpu-suit]:nth-of-type(2),#suitChoice button[data-cpu-suit]:nth-of-type(3){color:#c52d43}
 </style><style id="v074-interaction-fix">#decision:not([hidden]){position:relative;z-index:30}#decisionButtons{position:relative;z-index:31;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}#decisionButtons button{position:relative;z-index:32;pointer-events:auto;touch-action:manipulation;cursor:pointer;min-height:48px}#suitChoice button[data-cpu-suit]{position:relative;z-index:22}</style></head><body>
-<header class="brand"><h1>がばちょ <small>v0.74</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
+<header class="brand"><h1>がばちょ <small>v0.75</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back" onclick="showRanking()">🏆 全国ランキング</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
 <div id="onlineScreen" class="entry-screen" hidden><div class="entry-overline">ONLINE LOBBY · BETA</div><h2 class="entry-heading">🌐 オンライン対戦ロビー</h2><p class="entry-lead">部屋コードを共有して友達と集合</p><div class="online-fields"><label>ニックネーム<input id="onlineName" maxlength="20" placeholder="名前を入力" autocomplete="nickname"></label><label>部屋コード<input id="onlineCode" maxlength="8" placeholder="例：AB12CD" autocapitalize="characters"></label></div><button class="entry-primary" onclick="createOnlineRoom()">部屋を作る</button><button class="entry-primary" onclick="joinOnlineRoom()">コードで参加</button><p id="onlineMessage" role="status"></p><div id="onlineLobby" hidden><h3>部屋コード：<span id="onlineRoomCode"></span></h3><button onclick="copyOnlineCode()">コードをコピー</button><div id="onlineMembers"></div><button id="onlineStart" onclick="startOnlineMatch()" hidden>ゲーム開始</button><p class="muted">2〜3人対戦β版。参加人数に合わせて開始します。ホストが接続中の間、ゲームが同期されます。通信が切れたら新しい部屋でやり直してください。</p><div id="onlineGame" hidden></div><button class="entry-back" onclick="leaveOnlineRoom()">部屋から退出</button></div><button class="entry-back" onclick="leaveOnlineRoom();showHome()">← ホームへ戻る</button></div>
 <div id="rulesScreen" class="entry-screen rules-screen" hidden><div class="entry-overline">HOW TO PLAY</div><h2 class="entry-heading">📖 がばちょのルール</h2><div class="rules-body"><h3>🎯 勝利条件</h3><p>相手が場に出したカードの数字の合計と、自分の手札の数字の合計が一致したら「ドン！」。ドンが成立するとそのゲームは終了し、得点を精算します。設定したゲーム数が終わった時点の総合得点が最も高い人が優勝！</p><h3>🃏 基本の出し方</h3><p>最初の手札は5枚。場と同じマークか同じ数字のカードを出せます。同じ数字はまとめて複数枚出せます。Jとジョーカーはいつでも出せて、次のマークを指定できます。Aは1、ジョーカーは0として計算します。</p><h3>⚡ 特殊カード</h3><p><b>A：</b>次の人を1人飛ばします。複数枚ならその枚数分飛ばします。<br><b>2・8：</b>次の人は追加で2枚引きます。同じ数字を重ねて返せます。<br><b>ジョーカー：</b>次の人は追加で4枚引きます。ジョーカー同士で重ねられます。</p><h3>🔁 ターンとドロー</h3><p>出せるカードがなければ1枚引きます。1ターンに任意で引けるのは1枚まで。2・8などで追加のカードを引いた後も、出せるカードがなければさらに1枚引く必要があります。</p><h3>💰 ドンと得点</h3><p>通常ドンは、ドンした人以外の手札枚数合計×100点が基本。ドンした人の手札のジョーカー1枚ごとに獲得点数が2倍になります。ドンされた人も手札合計が一致すれば「ドン返し」が可能で、通常ドン返しは2倍です。</p><p>1枚引いて成立する「引きドン」は基本点が2倍、「引きドン返し」は4倍。自分の出した場札に引きドンする「オナニー引きドン」は2倍で、ほかの全員が均等に支払います。山札の再シャッフルで巡目が進むと得点倍率も上がります。</p><h3>🏆 最終優勝</h3><p>各ゲームの得点を累積し、全ゲーム終了後に総合1位を発表。同点1位は同時優勝です。</p></div><button class="entry-primary" onclick="showHome()">ホームへ戻る</button></div>
@@ -738,7 +738,8 @@ document.getElementById('suitChoice').addEventListener('click',event=>{
 function draw(){if(g.phase!=='turn'||g.turn!==0||g.drawn||g.penalty)return;if(!take(0)){if(!g.deck.length){g.drawn=true;render()}return;}g.drawn=true;if(total(g.hands[0])===g.board.target)startDecision('draw',g.board.owner,0);else render()}
 function pass(){if(g.phase==='turn'&&g.turn===0&&g.drawn)next()}
 // Play: every other player may declare. Draw: only drawing player may declare.
-function startDecision(kind,owner,drawer=null){let candidates=kind==='play'?g.hands.map((_,i)=>i).filter(i=>i!==owner&&total(g.hands[i])===g.board.target):[drawer].filter(i=>i!==null&&total(g.hands[i])===g.board.target);if(!candidates.length){if(kind==='play')next(g.skipSteps);else render();return}g.pending={kind,owner,drawer,candidates,callers:[],index:0,stage:'call'};g.phase='decision';advanceDecision()}
+function resumeCpuAfterDecision(){if(g&&g.phase==='turn'&&g.turn!==0){clearTimeout(timer);timer=setTimeout(cpu,450)}}
+function startDecision(kind,owner,drawer=null){let candidates=kind==='play'?g.hands.map((_,i)=>i).filter(i=>i!==owner&&total(g.hands[i])===g.board.target):[drawer].filter(i=>i!==null&&total(g.hands[i])===g.board.target);if(!candidates.length){if(kind==='play')next(g.skipSteps);else {render();resumeCpuAfterDecision()}return}g.pending={kind,owner,drawer,candidates,callers:[],index:0,stage:'call'};g.phase='decision';advanceDecision()}
 function advanceDecision(){let p=g.pending;if(!p)return;if(p.stage==='call'){while(p.index<p.candidates.length&&p.candidates[p.index]!==0){let cpu=p.candidates[p.index++];if(Math.random()<(g.difficulty==='easy'?.40:(g.difficulty==='hard'||g.difficulty==='expert')?.98:.82)){p.callers.push(cpu);say(who(cpu)+'が'+(p.kind==='draw'?'引きドン':'ドン')+'！')}else { /* CPUがドンを見送った事実は手札情報を漏らすため非表示 */ }}if(p.index<p.candidates.length){render();return}if(!p.callers.length){closeDecision();return}if(p.kind==='draw'&&p.owner===p.drawer){settle();return}if(p.owner>=0&&total(g.hands[p.owner])===g.board.target){p.stage='reverse';if(p.owner!==0){timer=setTimeout(()=>{if(g.pending===p){p.reverse=(g.difficulty==='easy'?Math.random()<.35:true);settle()}},450)}render();return}settle();return}}
 // Keep the decision buttons stable while processing a tap. A delegated listener
 // avoids losing handlers when the decision area is re-rendered on mobile Safari.
@@ -769,7 +770,7 @@ document.getElementById('decisionButtons').addEventListener('click',event=>{
  }else if(p.stage==='reverse'&&p.owner===0){p.reverse=yes;settle()}
 });
 
-function closeDecision(){let p=g.pending;g.pending=null;g.phase='turn';if(p.kind==='play')next(g.skipSteps);else render()}
+function closeDecision(){let p=g.pending;g.pending=null;g.phase='turn';if(p.kind==='play')next(g.skipSteps);else {render();resumeCpuAfterDecision()}}
 function settle(){
  let p=g.pending;if(!p)return;
  const reverse=!!p.reverse,owner=p.owner,callers=p.callers;
@@ -779,7 +780,7 @@ function settle(){
  const title=reverse?(isDraw?'引きドン返し':'ドン返し'):(selfDraw?'オナニー引きドン':isDraw?'引きドン':'通常ドン');
  const roundMultiplier=2**(g.round-1);
  const typeMultiplier=selfDraw?2:isDraw?(reverse?4:2):(reverse?2:1);
- const breakdown=(baseCards,base,jokerPower,actual,payers)=>{
+ const breakdown=(baseCards,base,jokerPower,actual,payers,handCards,eightBonus)=>{
   let parts=[cash(base)+' ('+(eightBonus?handCards+'枚＋8の追加'+eightBonus+'枚':baseCards+'枚')+')'];
   if(typeMultiplier>1)parts.push(typeMultiplier+'倍('+title+')');
   if(jokerPower>0)parts.push((2**jokerPower)+'倍(ジョーカー'+jokerPower+'枚)');
@@ -803,11 +804,11 @@ function settle(){
    for(const i of payers){g.scores[i]-=each;g.scores[winner]+=each}
    const actual=each*payers.length;
    changes.push(who(winner)+'が各'+cash(each)+'を'+payers.length+'人から獲得');
-   payments.push({line:who(winner)+' ← その他'+payers.length+'人：各'+cash(each),detail:breakdown(baseCards,base,jokerPower,amount,payers.length)});
+   payments.push({line:who(winner)+' ← その他'+payers.length+'人：各'+cash(each),detail:breakdown(baseCards,base,jokerPower,amount,payers.length,handCards,eightBonus)});
   }else if(winner>=0&&loser>=0){
    g.scores[loser]-=amount;g.scores[winner]+=amount;
    changes.push(who(loser)+' → '+who(winner)+'：'+cash(amount));
-   payments.push({line:who(loser)+' → '+who(winner)+'：'+cash(amount),detail:breakdown(baseCards,base,jokerPower,amount,0)});
+   payments.push({line:who(loser)+' → '+who(winner)+'：'+cash(amount),detail:breakdown(baseCards,base,jokerPower,amount,0,handCards,eightBonus)});
   }
  }
  const callerNames=callers.map(who).join('・');
