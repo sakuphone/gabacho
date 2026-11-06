@@ -618,24 +618,27 @@ section.details{margin-top:5px!important}
 #onlineGame .og-hand-area .og-suit-choice{margin:12px 0 2px}
 </style></head><body>
 <style id="v005-j-glow">.card.j-addable,#onlineGame .og-card.j-addable{box-shadow:0 0 0 2px #ffdb69,0 0 14px 4px #ffe47b9c!important;animation:jAddGlow 1.3s ease-in-out infinite alternate;position:relative}@keyframes jAddGlow{from{filter:brightness(1)}to{filter:brightness(1.22)}}</style><style id="don-fx-style">
-/* v0.0.8: Don impact animations. Visual only; never changes scoring or decisions. */
+/* v0.0.9: Don impact animations. Visual only; never changes scoring or decisions. */
 #donFx{position:fixed;inset:0;z-index:12000;pointer-events:none;display:grid;place-items:center;overflow:hidden;opacity:0;visibility:hidden}
-#donFx.fx-show{visibility:visible;animation:donFxFade 1050ms ease-out both}
-#donFx .don-fx-burst{position:absolute;width:min(95vw,600px);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0deg 11deg,var(--fx-ray) 12deg 16deg,transparent 17deg 24deg);mask-image:radial-gradient(circle,transparent 0 17%,#000 25% 72%,transparent 77%);animation:donFxBurst 900ms ease-out both}
-#donFx .don-fx-word{font-size:clamp(52px,15vw,112px);font-weight:1000;letter-spacing:-.07em;white-space:nowrap;color:var(--fx-text);-webkit-text-stroke:2px var(--fx-stroke);text-shadow:0 4px 0 var(--fx-stroke),0 9px 28px var(--fx-glow),0 0 45px var(--fx-glow);animation:donFxPop 950ms cubic-bezier(.16,1.3,.3,1) both;transform-origin:center}
-#donFx .don-fx-wash{position:absolute;inset:0;background:radial-gradient(circle,var(--fx-glow),transparent 65%);animation:donFxWash 950ms ease-out both}
+#donFx.fx-show{visibility:visible;animation:donFxFade 2000ms ease-out both}
+#donFx .don-fx-burst{position:absolute;width:min(95vw,600px);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(from 0deg,transparent 0deg 11deg,var(--fx-ray) 12deg 16deg,transparent 17deg 24deg);mask-image:radial-gradient(circle,transparent 0 17%,#000 25% 72%,transparent 77%);animation:donFxBurst 1850ms ease-out both}
+#donFx .don-fx-word{font-size:clamp(52px,15vw,112px);font-weight:1000;letter-spacing:-.07em;white-space:nowrap;color:var(--fx-text);-webkit-text-stroke:2px var(--fx-stroke);text-shadow:0 4px 0 var(--fx-stroke),0 9px 28px var(--fx-glow),0 0 45px var(--fx-glow);animation:donFxPop 1900ms cubic-bezier(.16,1.3,.3,1) both;transform-origin:center}
+#donFx .don-fx-wash{position:absolute;inset:0;background:radial-gradient(circle,var(--fx-glow),transparent 65%);animation:donFxWash 1900ms ease-out both}
 #donFx.fx-don{--fx-text:#ffe88d;--fx-stroke:#99530a;--fx-glow:#ffba2770;--fx-ray:#ffdb75b0}
 #donFx.fx-draw{--fx-text:#c4f0ff;--fx-stroke:#1765b8;--fx-glow:#3fa9ff7a;--fx-ray:#83caffb0}
 #donFx.fx-reverse{--fx-text:#ffd4d9;--fx-stroke:#a90e34;--fx-glow:#ff315c9e;--fx-ray:#ff5479d9}
 #donFx.fx-start{--fx-text:#fff5ba;--fx-stroke:#a14eae;--fx-glow:#e68bff9c;--fx-ray:#f4caffc9}
-#donFx.fx-reverse .don-fx-word{animation:donFxReverse 1150ms cubic-bezier(.16,1.3,.3,1) both}
+#donFx.fx-reverse .don-fx-word{animation:donFxReverse 1950ms cubic-bezier(.16,1.3,.3,1) both}
+/* Only reversals and start-don shake the screen; ordinary and draw-don stay unchanged. */
+body.don-screen-shake{animation:donScreenShake 560ms cubic-bezier(.35,.05,.6,.95) both}
+@keyframes donScreenShake{0%,100%{transform:translate(0,0)}10%{transform:translate(-9px,4px)}20%{transform:translate(10px,-6px)}30%{transform:translate(-11px,-3px)}40%{transform:translate(9px,6px)}50%{transform:translate(-7px,3px)}60%{transform:translate(6px,-4px)}75%{transform:translate(-3px,2px)}90%{transform:translate(2px,-1px)}}
 @keyframes donFxFade{0%{opacity:0}8%,72%{opacity:1}100%{opacity:0}}
 @keyframes donFxPop{0%{transform:scale(.22) rotate(-15deg);opacity:0}24%{transform:scale(1.3) rotate(5deg);opacity:1}45%{transform:scale(.98) rotate(-3deg)}65%{transform:scale(1.05)}100%{transform:scale(1.15);opacity:1}}
 @keyframes donFxReverse{0%{transform:translateX(90vw) rotate(20deg) scale(.45);opacity:0}30%{transform:translateX(-8vw) rotate(-8deg) scale(1.3);opacity:1}48%{transform:translateX(3vw) rotate(3deg) scale(.97)}100%{transform:translateX(0) scale(1.12);opacity:1}}
 @keyframes donFxBurst{0%{transform:scale(.15) rotate(-20deg);opacity:0}20%{opacity:1}100%{transform:scale(1.5) rotate(20deg);opacity:0}}
 @keyframes donFxWash{0%{opacity:0;transform:scale(.2)}25%{opacity:1}100%{opacity:0;transform:scale(1.6)}}
-@media(prefers-reduced-motion:reduce){#donFx.fx-show,#donFx .don-fx-word,#donFx .don-fx-burst,#donFx .don-fx-wash{animation-duration:.15s!important}}
-</style><div id="donFx" aria-hidden="true"><div class="don-fx-wash"></div><div class="don-fx-burst"></div><div class="don-fx-word">ドン！</div></div><header class="brand"><h1>がばちょ <small>v0.0.8</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
+@media(prefers-reduced-motion:reduce){#donFx.fx-show,#donFx .don-fx-word,#donFx .don-fx-burst,#donFx .don-fx-wash,body.don-screen-shake{animation-duration:.15s!important}}
+</style><div id="donFx" aria-hidden="true"><div class="don-fx-wash"></div><div class="don-fx-burst"></div><div class="don-fx-word">ドン！</div></div><header class="brand"><h1>がばちょ <small>v0.0.9</small></h1><span class="brand-sub">GABACHO CARD GAME</span></header><p class="muted">相手の裏向きトランプと枚数を表示／CPU対戦／2〜5人／ジョーカー2〜4枚／A・2・8対応／終了時にCPU手札公開</p>
 <div id="homeScreen" class="entry-screen"><div class="entry-emblem">🃏</div><div class="entry-overline">THE CARD GAME</div><h2 class="entry-title">がばちょ</h2><p class="entry-lead">ドンを狙え。ジョーカーで逆転。</p><button class="entry-primary" onclick="showSettings()">ゲームスタート <span>▶</span></button><button class="entry-primary" onclick="showOnline()">🌐 オンラインで遊ぶ</button><button class="entry-back" onclick="showRanking()">🏆 全国ランキング</button><button class="entry-back rules-open" onclick="showRules()">📖 ルール説明</button><p class="entry-note">CPU対戦 · 2〜5人 · オフライン対応</p></div>
 <div id="onlineScreen" class="entry-screen" hidden><div class="entry-overline">ONLINE LOBBY · BETA</div><h2 class="entry-heading">🌐 オンライン対戦ロビー</h2><p class="entry-lead">部屋コードを共有して友達と集合</p><div class="online-fields"><label>ニックネーム<input id="onlineName" maxlength="20" placeholder="名前を入力" autocomplete="nickname"></label><label>部屋コード<input id="onlineCode" maxlength="8" placeholder="例：AB12CD" autocapitalize="characters"></label></div><button class="entry-primary" onclick="createOnlineRoom()">部屋を作る</button><button class="entry-primary" onclick="joinOnlineRoom()">コードで参加</button><p id="onlineMessage" role="status"></p><div id="onlineLobby" hidden><h3>部屋コード：<span id="onlineRoomCode"></span></h3><button onclick="copyOnlineCode()">コードをコピー</button><div id="onlineMembers"></div><button id="onlineStart" onclick="startOnlineMatch()" hidden>ゲーム開始</button><p class="muted">2〜3人対戦β版。参加人数に合わせて開始します。ホストが接続中の間、ゲームが同期されます。通信が切れたら新しい部屋でやり直してください。</p><div id="onlineGame" hidden></div><button class="entry-back" onclick="leaveOnlineRoom()">部屋から退出</button></div><button class="entry-back" onclick="leaveOnlineRoom();showHome()">← ホームへ戻る</button></div>
 <div id="rulesScreen" class="entry-screen rules-screen" hidden><div class="entry-overline">HOW TO PLAY</div><h2 class="entry-heading">📖 がばちょのルール</h2><div class="rules-body"><h3>🎯 勝利条件</h3><p>相手が場に出したカードの数字の合計と、自分の手札の数字の合計が一致したら「ドン！」。ドンが成立するとそのゲームは終了し、得点を精算します。設定したゲーム数が終わった時点の総合得点が最も高い人が優勝！</p><h3>🃏 基本の出し方</h3><p>最初の手札は5枚。場と同じマークか同じ数字のカードを出せます。同じ数字はまとめて複数枚出せます。Jとジョーカーはいつでも出せて、次のマークを指定できます。Aは1、ジョーカーは0として計算します。</p><h3>⚡ 特殊カード</h3><p><b>A：</b>次の人を1人飛ばします。複数枚ならその枚数分飛ばします。<br><b>2・8：</b>次の人は追加で2枚引きます。同じ数字を重ねて返せます。<br><b>ジョーカー：</b>次の人は追加で4枚引きます。ジョーカー同士で重ねられます。</p><h3>🔁 ターンとドロー</h3><p>出せるカードがなければ1枚引きます。1ターンに任意で引けるのは1枚まで。2・8などで追加のカードを引いた後も、出せるカードがなければさらに1枚引く必要があります。</p><h3>💰 ドンと得点</h3><p>通常ドンは、ドンした人以外の手札枚数合計×100点が基本。ドンした人の手札のジョーカー1枚ごとに獲得点数が2倍になります。ドンされた人も手札合計が一致すれば「ドン返し」が可能で、通常ドン返しは2倍です。</p><p>1枚引いて成立する「引きドン」は基本点が2倍、「引きドン返し」は4倍。自分の出した場札に引きドンする「オナニー引きドン」は2倍で、ほかの全員が均等に支払います。山札の再シャッフルで巡目が進むと得点倍率も上がります。</p><h3>🌟 スタドン（開始時ドン）</h3><p>ゲーム開始直後、最初の場札の数字と自分の手札5枚の数字の合計が一致すると、カードを出す前にスタドンで即勝利！ Aは1、Jは11、Qは12、Kは13、ジョーカーは0として計算します。複数人が同時に成立した場合は先手から順番に優先します。</p><p><b>得点：</b>自分以外の全員の手札枚数合計 × 100点 × 4倍。この点数を相手全員から<b>それぞれ</b>受け取ります（分担ではありません）。例：4人対戦で相手が各5枚なら15枚×100点×4＝6,000点。勝者は＋18,000点、相手3人はそれぞれ−6,000点。</p><h3>🏆 最終優勝</h3><p>各ゲームの得点を累積し、全ゲーム終了後に総合1位を発表。同点1位は同時優勝です。</p></div><button class="entry-primary" onclick="showHome()">ホームへ戻る</button></div>
@@ -648,15 +651,16 @@ section.details{margin-top:5px!important}
 <script>
 
 // Animation is deliberately independent of turn state, scoring and input handling.
-let donFxTimeout=null;
+let donFxTimeout=null;let donShakeTimeout=null;
 function showDonFx(type){
  const el=document.getElementById('donFx');if(!el)return;
  const names={don:'ドン！！',draw:'引きドン！！',reverse:'ドン返し！！',start:'スタドン！！'};
  const key=names[type]?type:'don';
- clearTimeout(donFxTimeout);el.className='';void el.offsetWidth;
+ clearTimeout(donFxTimeout);clearTimeout(donShakeTimeout);document.body.classList.remove('don-screen-shake');el.className='';void el.offsetWidth;
  el.querySelector('.don-fx-word').textContent=names[key];
  el.className='fx-show fx-'+key;
- donFxTimeout=setTimeout(()=>{el.className=''},key==='reverse'?1200:1100);
+ if(key==='reverse'||key==='start'){void document.body.offsetWidth;document.body.classList.add('don-screen-shake');donShakeTimeout=setTimeout(()=>document.body.classList.remove('don-screen-shake'),600)}
+ donFxTimeout=setTimeout(()=>{el.className=''},2000);
 }
 
 function updateCpuDifficultyDescription(){const el=document.getElementById('cpuDifficultyDescription');const value=document.getElementById('cpuDifficulty').value;el.textContent={easy:'出せるカードをほぼランダムに選ぶ。複数枚出しやドン返しを狙う戦略は少なめ。',normal:'複数枚出しや基本的な戦略を使う。',hard:'ドンされる危険性を考えてカードを選ぶ。相手の手札枚数やジョーカーの使いどころも意識する。',expert:'ドンの危険性・次の手・得点を総合的に考え、より有利なカードを選ぶ。'}[value]}
