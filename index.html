@@ -560,18 +560,18 @@ section.details{margin-top:5px!important}
 #drawDonHint.draw-don-hint{margin:7px 2px 6px;padding:9px 12px;border:1px solid #e5bd65;border-radius:11px;background:#233d2d;color:#fff0c1;font-size:13px;font-weight:700;line-height:1.45;text-align:center}
 #drawDonHint[hidden]{display:none!important}
 
-/* v0.0.45: highlight the precise next action during a real 4-player tutorial */
+/* v0.0.46: highlight the precise next action during a real 4-player tutorial */
 @keyframes tutorialPulse{0%,100%{box-shadow:0 0 0 3px #ffda66,0 0 14px 5px #f6c453aa;transform:translateY(0)}50%{box-shadow:0 0 0 5px #fff3b4,0 0 25px 10px #f6c453dd;transform:translateY(-4px)}}
 .tutorial-spotlight{animation:tutorialPulse 1.15s ease-in-out infinite!important;position:relative;z-index:8;outline:3px solid #fbd16c!important;outline-offset:2px}
 #tutorialRealBanner{position:sticky!important;top:4px;z-index:20!important;box-shadow:0 4px 14px #0006}
 
-/* v0.0.45 fixed four-player guided tutorial */
+/* v0.0.46 fixed four-player guided tutorial */
 #gameScreen.tutorial-fixed > :not(#fixedTutorial){display:none!important}
 #fixedTutorial{max-width:700px;margin:auto;padding:12px;color:#f7f5e8;font-family:inherit}
 .ft-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.ft-top button,.ft-next{border:0;border-radius:9px;background:#f1ca73;color:#20352d;padding:10px 13px;font-weight:800}
 .ft-table{background:radial-gradient(ellipse,#276a50,#10382e);border:3px solid #7a6035;border-radius:26px;padding:14px 9px;min-height:460px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
 .ft-seat{text-align:center;background:#0c3028b8;border-radius:12px;padding:7px;font-size:12px}.ft-seat b{font-size:14px}.ft-seat .ft-backs{color:#d9e9fa;letter-spacing:2px;margin:5px 0}.ft-middle{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:6px;align-items:center}.ft-center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}.ft-card{min-width:47px;height:67px;border-radius:7px;background:#fff;color:#182c25;border:2px solid #ddd;display:inline-flex;flex-direction:column;justify-content:center;align-items:center;font-size:18px;font-weight:900;line-height:1.2;padding:2px;box-shadow:0 3px 6px #0005}.ft-card.red{color:#d43c49}.ft-card.back{background:#285e96;color:white}.ft-card:disabled{opacity:.72}.ft-card.ft-glow,.ft-next.ft-glow{animation:tutorialPulse 1.1s infinite!important;border-color:#f8cf5e;cursor:pointer;z-index:2}
-.ft-hand{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px}.ft-hand .ft-card{min-width:43px;width:50px;height:70px}
+.ft-hand{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:8px}.ft-hand .ft-card{min-width:43px;width:50px;height:70px}.ft-hand .ft-card.ft-selected{border:3px solid #6ce5c6;box-shadow:0 0 0 3px #0c8c75,0 0 14px #6ce5c6;transform:translateY(-9px)}
 .ft-message{background:#fff3c6;color:#273b30;border-radius:12px;padding:13px;margin:12px 0;line-height:1.6;font-weight:700}.ft-progress{font-size:12px;color:#e8d9a8}.ft-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.ft-actions button{padding:11px 16px;border-radius:10px;border:2px solid #f3ca65;background:#f3ca65;color:#20352d;font-weight:800}.ft-actions button:disabled{opacity:.45}.ft-scores{background:#0c3028b8;border-radius:10px;padding:7px;font-size:12px;text-align:center}.ft-scores span{display:inline-block;margin:2px 5px}
 </style><style id="online-style">#onlineScreen .online-fields{display:grid;gap:12px;margin:15px auto;max-width:330px}#onlineScreen label{display:grid;gap:5px;text-align:left;color:#f5e1ac;font-weight:700}#onlineScreen input{width:100%;padding:13px;border-radius:10px;border:1px solid #d6b967;background:#fffdf6;color:#17382c;font-size:17px}#onlineMessage{min-height:2em;color:#ffe18d;white-space:pre-wrap}#onlineLobby{margin:16px auto;padding:14px;border:1px solid #d7b66b;border-radius:15px;background:#08382d}#onlineMembers{margin:12px 0;text-align:left;line-height:2}#onlineRoomCode{letter-spacing:3px;color:#ffe18d}#onlineScreen .entry-primary{margin:5px}#onlineGame .og-decision{border:2px solid #f7d47a;border-radius:14px;padding:10px;margin:10px 0;background:#174b39}#onlineGame .og-decision button{margin:5px;background:#ffe19a;color:#17382d;font-weight:800}
 
@@ -1394,11 +1394,11 @@ function updateRealTutorial(){
 const fixedScenes=[
  {title:'基本操作',tip:'場は♥7。同じマークの♥3をタップしよう！',board:'♥7',hand:['♥3','♣K','♠4','♦6','🃏'],cpu:[5,5,5],action:'card',target:'♥3',after:'♥3を出せた！ 同じ数字か同じマークなら出せるよ。'},
  {title:'A（スキップ）',tip:'光る♣Aを出そう！ 次のCPUを1人飛ばすよ。',board:'♣9',hand:['♣A','♦5','♠3','♥8','🃏'],cpu:[5,5,5],action:'card',target:'♣A',after:'Aで次のプレイヤーをスキップ！'},
- {title:'2（ドロー）',tip:'♠2を出そう！ 次のCPUが2枚引くよ。',board:'♠9',hand:['♠2','♥4','♦7','♣J','🃏'],cpu:[5,5,5],action:'card',target:'♠2',after:'CPU1が2枚引いた！',delta:[2,0,0]},
- {title:'2の重ね出し',tip:'同じ数字の2を2枚続けて出そう！ 2枚×2で4枚ドロー。まず光る2をタップ！',board:'♦2',hand:['♣2','♥2','♦5','♠8','🃏'],cpu:[5,5,5],action:'multi',targets:['♣2','♥2'],after:'2を2枚重ねた！ CPU1が4枚引いたよ。',delta:[4,0,0]},
- {title:'8（ドロー）',tip:'♥8を出そう！ 8も次のCPUに2枚引かせるよ。',board:'♥6',hand:['♥8','♣3','♦9','♠K','🃏'],cpu:[5,5,5],action:'card',target:'♥8',after:'CPU1が2枚引いた！',delta:[2,0,0]},
- {title:'J（いつでも出せる）',tip:'場は♠4だけど、♦Jはマークが違っても出せる！ タップしよう。',board:'♠4',hand:['♦J','♣6','♥9','♠A','🃏'],cpu:[5,5,5],action:'card',target:'♦J',after:'Jはどんなマークの場にも出せるよ。'},
- {title:'ドン！',tip:'CPU1が♠5を出した！ 手札は♥2＋♣3＋ジョーカー0＝5。光る「ドン！」を押そう！',board:'♠5',hand:['♥2','♣3','🃏'],cpu:[4,3,5],action:'button',target:'ドン！',after:'ドン成功！ 相手の手札4＋3＋5＝12枚。12×100×2（ジョーカー1枚）＝2,400点。',score:'don'},
+ {title:'2（ドロー）',tip:'♠2を出そう！ 次のCPUが2枚引くよ。',board:'♠9',hand:['♠2','♥4','♦7','♣J','🃏'],cpu:[5,5,5],action:'card',target:'♠2',after:'次のプレイヤーCPU3が2枚引いた！',delta:[0,0,2]},
+ {title:'2の重ね出し',tip:'2を2枚選択してから「カードを出す」を押そう！ 2枚×2で次のCPUが4枚ドロー。まず1枚目の2を選択！',board:'♦2',hand:['♣2','♥2','♦5','♠8','🃏'],cpu:[5,5,5],action:'multi',targets:['♣2','♥2'],after:'2を2枚同時に出した！ 次のプレイヤーCPU3が4枚引いたよ。',delta:[0,0,4]},
+ {title:'8（ドロー）',tip:'♥8を出そう！ 8も次のCPUに2枚引かせるよ。',board:'♥6',hand:['♥8','♣3','♦9','♠K','🃏'],cpu:[5,5,5],action:'card',target:'♥8',after:'次のプレイヤーCPU3が2枚引いた！',delta:[0,0,2]},
+ {title:'J（いつでも出せる）',tip:'場は♠4だけど、♦Jはマークが違っても出せる！ タップしよう。',board:'♠4',hand:['♦J','♣6','♥9','♠A','🃏'],cpu:[5,5,5],action:'card',target:'♦J',after:'Jはどんなマークの場にも出せるよ。続いて次のマークを選ぼう！'},
+ {title:'ドン！',tip:'CPU1が♠5を出した！ 手札は♥2＋♣3＋ジョーカー0＝5。光る「ドン！」を押そう！',board:'♠5',hand:['♥2','♣3','🃏'],cpu:[4,3,5],action:'button',target:'ドン！',after:'ドン成功！ ドンした人以外の手札4＋3＋5＝12枚。12×100×2（ジョーカー1枚）＝2,400点。場にカードを出したCPU1が支払い、あなたが受け取るよ。',score:'don'},
  {title:'引きドン！',tip:'場は♠Q（12）、手札は5＋3＝8。山札から♦4を引こう！',board:'♠Q',hand:['♥5','♣3'],cpu:[4,4,5],action:'draw',target:'山札から1枚引く',after:'♦4を引いた！ 手札合計が12になった。',follow:'引きドン！',score:'draw'},
  {title:'ドン返し！',tip:'あなたが♥5を出したらCPU1がドン！ でもCPU1の残り手札合計も5。光る「ドン返し！」で返そう！',board:'♥5',hand:['♣2','♦3','🃏'],cpu:[2,4,5],action:'button',target:'ドン返し！',after:'ドン返し成功！ ジョーカーの倍率も得点に反映されるよ。',score:'reverse'},
  {title:'結果・順位',tip:'ここまでの獲得点と順位を見よう。ジョーカーは場に出せず、持っているだけでドンの得点倍率が上がるよ。',board:'♥5',hand:['♣2','♦3','🃏'],cpu:[2,4,5],action:'finish',target:'チュートリアルを終了',after:'🎉 チュートリアル完了！'}
@@ -1413,7 +1413,7 @@ function startFixedTutorial(){
  fixedStep=0;fixedScores=[0,0,0,0];fixedLoad();showScreen('gameScreen');
 }
 function endFixedTutorial(){document.getElementById('gameScreen').classList.remove('tutorial-fixed');document.getElementById('fixedTutorial').hidden=true;showHome()}
-function fixedLoad(){let s=fixedScenes[fixedStep];fixedSub=0;fixedHand=[...s.hand];fixedCpu=[...s.cpu];fixedBoard=s.board;fixedRender()}
+function fixedLoad(){let s=fixedScenes[fixedStep];fixedSub=0;fixedSelected=[];fixedSuit='';fixedHand=[...s.hand];fixedCpu=[...s.cpu];fixedBoard=s.board;fixedRender()}
 function fixedCardMarkup(c,clickable=false,glow=false){let red=c.includes('♥')||c.includes('♦');return '<span class="ft-card '+(red?'red ':'')+(glow?'ft-glow':'')+'">'+(c==='🃏'?'🃏<small>JOKER</small>':c)+'</span>'}
 function fixedScoreDon(kind){
  const count=fixedCpu.reduce((a,b)=>a+b,0);
@@ -1425,35 +1425,60 @@ function fixedScoreDon(kind){
  return {count,mult,gain};
 }
 function fixedRender(note){
- const s=fixedScenes[fixedStep],target=s.action==='multi'?s.targets[fixedSub]:s.target;
+ const s=fixedScenes[fixedStep];
+ const isMulti=s.action==='multi',isJ=s.title.startsWith('J（');
+ const target=isMulti?s.targets[fixedSelected.length]:s.target;
  const seats=(i,emoji,name)=>'<div class="ft-seat"><b>'+emoji+' '+name+'</b><div class="ft-backs">'+('🂠 '.repeat(Math.min(7,fixedCpu[i-1])))+(fixedCpu[i-1]>7?'+'+(fixedCpu[i-1]-7):'')+'</div>'+fixedCpu[i-1]+'枚 · '+fixedScores[i].toLocaleString()+'pt</div>';
  const canDraw=s.action==='draw'&&fixedSub===0;
- const center='<div class="ft-center"><small>場のカード</small>'+fixedCardMarkup(fixedBoard)+'<small>山札（練習用）</small><button class="ft-card back '+(canDraw?'ft-glow':'')+'" '+(canDraw?'onclick="fixedAct(\'draw\')"':'disabled')+'>🂠</button></div>';
- let hand=fixedHand.map((c,i)=>{let glow=(s.action==='card'&&fixedSub===0&&c===target)||(s.action==='multi'&&c===target);return '<button class="ft-card '+((c.includes('♥')||c.includes('♦'))?'red ':'')+(glow?'ft-glow':'')+'" '+(glow?'onclick="fixedAct(\'card\','+i+')"':'disabled')+'>'+ (c==='🃏'?'🃏<small>JOKER</small>':c)+'</button>'}).join('');
+ const center='<div class="ft-center"><small>場のカード</small>'+fixedCardMarkup(fixedBoard)+(fixedSuit?'<small>指定マーク：'+fixedSuit+'</small>':'')+'<small>山札（練習用）</small><button class="ft-card back '+(canDraw?'ft-glow':'')+'" '+(canDraw?'onclick="fixedAct(\'draw\')"':'disabled')+'>🂠</button></div>';
+ let hand=fixedHand.map((c,i)=>{
+  const selected=fixedSelected.includes(i);
+  const glow=(s.action==='card'&&fixedSub===0&&c===target)||(isMulti&&fixedSub===0&&c===target&&!selected);
+  return '<button class="ft-card '+((c.includes('♥')||c.includes('♦'))?'red ':'')+(glow?'ft-glow ':'')+(selected?'ft-selected ':'')+'" '+(glow?'onclick="fixedAct(\'card\','+i+')"':'disabled')+'>'+ (c==='🃏'?'🃏<small>JOKER</small>':c)+(selected?'<small>✓ 選択中</small>':'')+'</button>';
+ }).join('');
  document.getElementById('ftProgress').textContent=(fixedStep+1)+' / '+fixedScenes.length+'｜'+s.title;
  document.getElementById('ftTable').innerHTML='<div>'+seats(1,'🐶','CPU1')+'</div><div class="ft-middle">'+seats(3,'🐱','CPU3')+center+seats(2,'🐻','CPU2')+'</div><div class="ft-seat"><b>👤 あなた</b> · '+fixedScores[0].toLocaleString()+'pt<div class="ft-hand">'+hand+'</div><small>手札合計：'+fixedHand.reduce((a,c)=>a+(c==='🃏'?0:({'A':1,'J':11,'Q':12,'K':13}[c.slice(1)]||Number(c.slice(1))||0)),0)+'</small></div><div class="ft-scores">'+fixedScores.map((n,i)=>'<span>'+(i?'CPU'+i:'あなた')+' '+n.toLocaleString()+'pt</span>').join('')+'</div>';
  document.getElementById('ftMessage').textContent=note||s.tip;
  let buttons='';
- if(s.action==='button')buttons='<button class="ft-glow" onclick="fixedAct(\'button\')">'+s.target+'</button>';
+ if(s.action==='button'&&fixedSub===0)buttons='<button class="ft-glow" onclick="fixedAct(\'button\')">'+s.target+'</button>';
  if(s.action==='draw'&&fixedSub===1)buttons='<button class="ft-glow" onclick="fixedAct(\'button\')">引きドン！</button>';
+ if(isMulti&&fixedSub===0)buttons='<button '+(fixedSelected.length===2?'class="ft-glow" onclick="fixedAct(\'play\')"':'disabled')+'>カードを出す（'+fixedSelected.length+'/2枚選択）</button>';
+ if(isJ&&fixedSub===1)buttons='<div style="width:100%;text-align:center;margin-bottom:6px">次のマークを選んでね！</div>'+['♠','♥','♦','♣'].map((suit,i)=>'<button class="ft-glow" onclick="fixedAct(\'suit\','+i+')">'+suit+'</button>').join('');
  if(s.action==='finish')buttons='<button class="ft-glow" onclick="endFixedTutorial()">チュートリアルを終了 🎉</button>';
  document.getElementById('ftActions').innerHTML=buttons;
 }
-function fixedAct(type,index){
- const s=fixedScenes[fixedStep];
- if(type==='card'&&(s.action==='card'||s.action==='multi')){
-  const expected=s.action==='multi'?s.targets[fixedSub]:s.target;
-  if(fixedHand[index]!==expected)return;
-  fixedBoard=fixedHand[index];fixedHand.splice(index,1);
-  if(s.action==='multi'&&fixedSub===0){fixedSub=1;fixedRender('いいね！ 次に光っているもう1枚の2を出そう。');return}
- }else if(type==='draw'&&s.action==='draw'&&fixedSub===0){fixedHand.push('♦4');fixedSub=1;fixedRender('♦4を引いた！ 5＋3＋4＝12。次は「引きドン！」を押そう！');return}
- else if(type==='button'&&(s.action==='button'||(s.action==='draw'&&fixedSub===1))){}
- else return;
+function fixedComplete(s){
  if(s.delta)s.delta.forEach((n,i)=>fixedCpu[i]+=n);
  let note=s.after;
- if(s.score){const result=fixedScoreDon(s.score);note+=' 今回の獲得：+'+result.gain.toLocaleString()+'pt（相手の残り'+result.count+'枚×100×倍率'+result.mult+'）。'}
+ if(s.score){const result=fixedScoreDon(s.score);note+=' 今回の獲得：+'+result.gain.toLocaleString()+'pt（ドンした人以外の手札合計'+result.count+'枚×100×倍率'+result.mult+'）。場にカードを出したCPU1が支払い、あなたが受け取る。'}
  fixedSub=2;fixedRender(note);
  document.getElementById('ftActions').innerHTML='<button class="ft-glow" onclick="fixedNext()">次へ進む ▶</button>';
+}
+function fixedAct(type,index){
+ const s=fixedScenes[fixedStep],isMulti=s.action==='multi',isJ=s.title.startsWith('J（');
+ if(type==='card'&&s.action==='card'&&fixedSub===0){
+  if(fixedHand[index]!==s.target)return;
+  fixedBoard=fixedHand[index];fixedHand.splice(index,1);
+  if(isJ){fixedSub=1;fixedRender(s.after+' ♠ ♥ ♦ ♣ から好きなマークをタップ！');return;}
+  fixedComplete(s);return;
+ }
+ if(type==='card'&&isMulti&&fixedSub===0){
+  if(fixedSelected.length>=2||fixedSelected.includes(index)||fixedHand[index]!==s.targets[fixedSelected.length])return;
+  fixedSelected.push(index);
+  fixedRender(fixedSelected.length===1?'1枚目を選択！ 次に光るもう1枚の2をタップしよう。':'2枚選択できた！ 光る「カードを出す」を押そう。');return;
+ }
+ if(type==='play'&&isMulti&&fixedSub===0&&fixedSelected.length===2){
+  fixedBoard=fixedHand[fixedSelected[1]];
+  fixedSelected.sort((a,b)=>b-a).forEach(i=>fixedHand.splice(i,1));
+  fixedComplete(s);return;
+ }
+ if(type==='suit'&&isJ&&fixedSub===1&&index>=0&&index<4){
+  fixedSuit=['♠','♥','♦','♣'][index];fixedComplete({...s,after:'指定マークを'+fixedSuit+'に変更！ 次のプレイヤーは'+fixedSuit+'のカードを出せるよ。'});return;
+ }
+ if(type==='draw'&&s.action==='draw'&&fixedSub===0){
+  fixedHand.push('♦4');fixedSub=1;fixedRender('♦4を引いた！ 5＋3＋4＝12。次は「引きドン！」を押そう！');return;
+ }
+ if(type==='button'&&(s.action==='button'&&fixedSub===0||s.action==='draw'&&fixedSub===1))fixedComplete(s);
 }
 function fixedNext(){if(fixedStep<fixedScenes.length-1){fixedStep++;fixedLoad()}else endFixedTutorial()}
 
